@@ -1,0 +1,10 @@
+Bundle-Name: ServiceBuilder-api
+Bundle-SymbolicName: com.trollingcont.servicebuilder.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.trollingcont.servicebuilder.exception,\
+	com.trollingcont.servicebuilder.model,\
+	com.trollingcont.servicebuilder.service,\
+	com.trollingcont.servicebuilder.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../ServiceBuilder-service/service.xml

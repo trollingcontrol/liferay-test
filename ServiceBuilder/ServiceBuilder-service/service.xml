@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.3.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_3_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.trollingcont.servicebuilder">
+	<namespace>LS</namespace>
+	<entity local-service="true" name="Employee" remote-service="true" uuid="true">
+
+		<column name="employeeId" primary="true" type="long" />
+
+		<column name="firstName" type="String" />
+		<column name="lastName" type="String" />
+		<column name="middleName" type="String" />
+
+		<column name="birthDate" type="Date" />
+
+		<column name="postId" type="long" />
+
+		<!-- Female TRUE, Male FALSE -->
+		<column name="sex" type="Boolean" />
+
+<!--		&lt;!&ndash; PK fields &ndash;&gt;-->
+<!--		<column name="id" primary="true" type="long" />-->
+<!--		&lt;!&ndash; Group instance &ndash;&gt;-->
+<!--		<column name="groupId" type="long" />-->
+<!--		&lt;!&ndash; Audit fields &ndash;&gt;-->
+<!--		<column name="companyId" type="long" />-->
+<!--		<column name="userId" type="long" />-->
+<!--		<column name="userName" type="String" />-->
+<!--		<column name="createDate" type="Date" />-->
+<!--		<column name="modifiedDate" type="Date" />-->
+<!--		&lt;!&ndash; Other fields &ndash;&gt;-->
+<!--		<column name="field1" type="String" />-->
+<!--		<column name="field2" type="boolean" />-->
+<!--		<column name="field3" type="int" />-->
+<!--		<column name="field4" type="Date" />-->
+<!--		<column name="field5" type="String" />-->
+<!--		&lt;!&ndash; Order &ndash;&gt;-->
+<!--		<order by="asc">-->
+<!--			<order-column name="id" />-->
+<!--		</order>-->
+<!--		&lt;!&ndash; Finder methods &ndash;&gt;-->
+<!--		<finder name="Field2" return-type="Collection">-->
+<!--			<finder-column name="field2" />-->
+<!--		</finder>-->
+<!--		&lt;!&ndash; References &ndash;&gt;-->
+<!--		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />-->
+<!--		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />-->
+	</entity>
+
+	<entity local-service="true" name="Electronics" remote-service="true" uuid="true">
+
+		<column name="productId" primary="true" type="long" />
+
+		<column name="name" type="String" />
+
+		<column name="productTypeId" type="long" />
+
+		<column name="cost" type="long" />
+
+		<column name="amount" type="long" />
+
+		<column name="present" type="Boolean" />
+
+		<column name="archived" type="Boolean" />
+
+		<column name="description" type="String" />
+
+	</entity>
+
+	<entity local-service="true" name="Purchase" remote-service="true" uuid="true">
+
+		<column name="purchaseId" primary="true" type="long" />
+
+		<column name="productId" type="long" />
+
+		<column name="employeeId" type="long" />
+
+		<column name="datePurchased" type="Date" />
+
+		<column name="purchaseTypeId" type="long" />
+
+	</entity>
+
+	<entity local-service="true" name="EmployeeRight" remote-service="true">
+
+		<column name="rightId" primary="true" type="long" />
+
+		<column name="employeeId" type="long" />
+
+		<column name="productTypeId" type="long" />
+
+	</entity>
+
+	<entity local-service="true" name="Post" remote-service="true" uuid="true">
+
+		<column name="postId" primary="true" type="long" />
+
+		<column name="name" type="String" />
+
+	</entity>
+
+	<entity local-service="true" name="ElectronicsType" remote-service="true" uuid="true">
+
+		<column name="productTypeId" primary="true" type="long" />
+
+		<column name="name" type="String" />
+
+	</entity>
+
+	<entity local-service="true" name="PurchaseType" remote-service="true" uuid="true">
+
+		<column name="purchaseTypeId" primary="true" type="long" />
+
+		<column name="name" type="String" />
+
+	</entity>
+
+</service-builder>
