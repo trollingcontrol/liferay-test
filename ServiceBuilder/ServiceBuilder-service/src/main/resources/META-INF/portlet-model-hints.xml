@@ -35,7 +35,9 @@
 		<field name="middleName" type="String">
 			<hint-collection name="employeeName" />
 		</field>
-		<field name="birthDate" type="Date" />
+		<field name="birthDate" type="Date">
+			<hint-collection name="dateConstraints" />
+		</field>
 		<field name="postId" type="long" />
 		<field name="sex" type="Boolean" />
 	</model>
@@ -56,7 +58,9 @@
 		<field name="purchaseId" type="long" />
 		<field name="productId" type="long" />
 		<field name="employeeId" type="long" />
-		<field name="datePurchased" type="Date" />
+		<field name="datePurchased" type="Date">
+			<hint-collection name="dateConstraints" />
+		</field>
 		<field name="purchaseTypeId" type="long" />
 	</model>
 	<model name="com.trollingcont.servicebuilder.model.PurchaseType">
@@ -83,5 +87,8 @@
 	</hint-collection>
 	<hint-collection name="productDescription">
 		<hint name="max-length">5000</hint>
+	</hint-collection>
+	<hint-collection name="dateConstraints">
+		<hint name="year-range-future">false</hint>
 	</hint-collection>
 </model-hints>
