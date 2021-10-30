@@ -59,6 +59,17 @@ public class ElectronicsLocalServiceUtil {
 		return getService().addElectronics(electronics);
 	}
 
+	public static Electronics addElectronics(
+			String name, long productTypeId, long cost, long amount,
+			boolean present, boolean archived, String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().addElectronics(
+			name, productTypeId, cost, amount, present, archived, description,
+			serviceContext);
+	}
+
 	/**
 	 * Creates a new electronics with the primary key. Does not add the electronics to the database.
 	 *
@@ -281,6 +292,17 @@ public class ElectronicsLocalServiceUtil {
 	 */
 	public static Electronics updateElectronics(Electronics electronics) {
 		return getService().updateElectronics(electronics);
+	}
+
+	public static Electronics updateElectronics(
+			long electronicsId, String name, long productTypeId, long cost,
+			long amount, boolean present, boolean archived, String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().updateElectronics(
+			electronicsId, name, productTypeId, cost, amount, present, archived,
+			description, serviceContext);
 	}
 
 	public static ElectronicsLocalService getService() {

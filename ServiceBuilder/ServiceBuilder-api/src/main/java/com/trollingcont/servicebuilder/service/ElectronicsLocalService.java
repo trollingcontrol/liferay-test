@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -74,6 +75,12 @@ public interface ElectronicsLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Electronics addElectronics(Electronics electronics);
+
+	public Electronics addElectronics(
+			String name, long productTypeId, long cost, long amount,
+			boolean present, boolean archived, String description,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Creates a new electronics with the primary key. Does not add the electronics to the database.
@@ -258,5 +265,11 @@ public interface ElectronicsLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Electronics updateElectronics(Electronics electronics);
+
+	public Electronics updateElectronics(
+			long electronicsId, String name, long productTypeId, long cost,
+			long amount, boolean present, boolean archived, String description,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 }

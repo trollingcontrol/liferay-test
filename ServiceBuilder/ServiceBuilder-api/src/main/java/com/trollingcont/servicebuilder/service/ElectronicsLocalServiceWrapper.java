@@ -50,6 +50,18 @@ public class ElectronicsLocalServiceWrapper
 		return _electronicsLocalService.addElectronics(electronics);
 	}
 
+	@Override
+	public com.trollingcont.servicebuilder.model.Electronics addElectronics(
+			String name, long productTypeId, long cost, long amount,
+			boolean present, boolean archived, String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _electronicsLocalService.addElectronics(
+			name, productTypeId, cost, amount, present, archived, description,
+			serviceContext);
+	}
+
 	/**
 	 * Creates a new electronics with the primary key. Does not add the electronics to the database.
 	 *
@@ -311,6 +323,18 @@ public class ElectronicsLocalServiceWrapper
 		com.trollingcont.servicebuilder.model.Electronics electronics) {
 
 		return _electronicsLocalService.updateElectronics(electronics);
+	}
+
+	@Override
+	public com.trollingcont.servicebuilder.model.Electronics updateElectronics(
+			long electronicsId, String name, long productTypeId, long cost,
+			long amount, boolean present, boolean archived, String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _electronicsLocalService.updateElectronics(
+			electronicsId, name, productTypeId, cost, amount, present, archived,
+			description, serviceContext);
 	}
 
 	@Override
