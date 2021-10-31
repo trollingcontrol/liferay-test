@@ -139,6 +139,12 @@
 			<version>${spring.version}.RELEASE</version>
 			<scope>${spring.scope}</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.trollingcont.servicebuilder</groupId>
+			<artifactId>ServiceBuilder-api</artifactId>
+			<version>1.0.0</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

@@ -11,6 +11,7 @@
     <module>themes</module>
     <module>MVCPortlet</module>
     <module>ServiceBuilder</module>
+    <module>FullPortlet</module>
   </modules>
   <properties>
     <liferay.repository.url>https://repository-cdn.liferay.com/nexus/content/groups/public/</liferay.repository.url>
