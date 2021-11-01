@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.trollingcont.servicebuilder.exception.ElectronicsTypeNameException;
 import com.trollingcont.servicebuilder.model.ElectronicsType;
 
 import java.io.Serializable;
@@ -61,6 +62,7 @@ public interface ElectronicsTypeLocalService
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>com.trollingcont.servicebuilder.service.impl.ElectronicsTypeLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the electronics type local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link ElectronicsTypeLocalServiceUtil} if injection and service tracking are not available.
 	 */
+	public void addElectronicsType() throws ElectronicsTypeNameException;
 
 	/**
 	 * Adds the electronics type to the database. Also notifies the appropriate model listeners.

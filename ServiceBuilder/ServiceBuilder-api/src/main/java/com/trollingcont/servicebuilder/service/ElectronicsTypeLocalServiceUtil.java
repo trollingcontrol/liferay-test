@@ -44,6 +44,12 @@ public class ElectronicsTypeLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.trollingcont.servicebuilder.service.impl.ElectronicsTypeLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static void addElectronicsType()
+		throws com.trollingcont.servicebuilder.exception.
+			ElectronicsTypeNameException {
+
+		getService().addElectronicsType();
+	}
 
 	/**
 	 * Adds the electronics type to the database. Also notifies the appropriate model listeners.

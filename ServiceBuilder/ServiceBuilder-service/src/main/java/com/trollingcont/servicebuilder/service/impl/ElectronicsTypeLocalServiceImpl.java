@@ -16,6 +16,9 @@ package com.trollingcont.servicebuilder.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.trollingcont.servicebuilder.exception.ElectronicsTypeNameException;
+import com.trollingcont.servicebuilder.model.ElectronicsType;
 import com.trollingcont.servicebuilder.service.base.ElectronicsTypeLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
@@ -45,4 +48,8 @@ public class ElectronicsTypeLocalServiceImpl
 	 *
 	 * Never reference this class directly. Use <code>com.trollingcont.servicebuilder.service.ElectronicsTypeLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.trollingcont.servicebuilder.service.ElectronicsTypeLocalServiceUtil</code>.
 	 */
+
+	public void addElectronicsType() throws ElectronicsTypeNameException {
+		throw new ElectronicsTypeNameException();
+	}
 }

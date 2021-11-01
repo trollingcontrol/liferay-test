@@ -33,6 +33,14 @@ public class ElectronicsTypeLocalServiceWrapper
 		_electronicsTypeLocalService = electronicsTypeLocalService;
 	}
 
+	@Override
+	public void addElectronicsType()
+		throws com.trollingcont.servicebuilder.exception.
+			ElectronicsTypeNameException {
+
+		_electronicsTypeLocalService.addElectronicsType();
+	}
+
 	/**
 	 * Adds the electronics type to the database. Also notifies the appropriate model listeners.
 	 *
