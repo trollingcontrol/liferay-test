@@ -59,6 +59,9 @@
   <build>
     <plugins>
       <plugin>
+        <configuration>
+          <liferayHome>C:\liferay-ce-portal-7.3.5-ga6</liferayHome>
+        </configuration>
         <groupId>com.liferay</groupId>
         <artifactId>com.liferay.portal.tools.bundle.support</artifactId>
         <version>3.7.3</version>
