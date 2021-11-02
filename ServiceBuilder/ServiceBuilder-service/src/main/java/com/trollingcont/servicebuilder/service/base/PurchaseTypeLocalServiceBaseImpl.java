@@ -41,11 +41,11 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.trollingcont.servicebuilder.model.PurchaseType;
 import com.trollingcont.servicebuilder.service.PurchaseTypeLocalService;
 import com.trollingcont.servicebuilder.service.PurchaseTypeLocalServiceUtil;
-import com.trollingcont.servicebuilder.service.persistence.ElectronicsPersistence;
-import com.trollingcont.servicebuilder.service.persistence.ElectronicsTypePersistence;
 import com.trollingcont.servicebuilder.service.persistence.EmployeePersistence;
 import com.trollingcont.servicebuilder.service.persistence.EmployeeRightPersistence;
 import com.trollingcont.servicebuilder.service.persistence.PostPersistence;
+import com.trollingcont.servicebuilder.service.persistence.ProductPersistence;
+import com.trollingcont.servicebuilder.service.persistence.ProductTypePersistence;
 import com.trollingcont.servicebuilder.service.persistence.PurchasePersistence;
 import com.trollingcont.servicebuilder.service.persistence.PurchaseTypePersistence;
 
@@ -450,12 +450,6 @@ public abstract class PurchaseTypeLocalServiceBaseImpl
 	}
 
 	@Reference
-	protected ElectronicsPersistence electronicsPersistence;
-
-	@Reference
-	protected ElectronicsTypePersistence electronicsTypePersistence;
-
-	@Reference
 	protected EmployeePersistence employeePersistence;
 
 	@Reference
@@ -463,6 +457,12 @@ public abstract class PurchaseTypeLocalServiceBaseImpl
 
 	@Reference
 	protected PostPersistence postPersistence;
+
+	@Reference
+	protected ProductPersistence productPersistence;
+
+	@Reference
+	protected ProductTypePersistence productTypePersistence;
 
 	@Reference
 	protected PurchasePersistence purchasePersistence;

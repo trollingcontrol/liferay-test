@@ -39,6 +39,24 @@ create table LS_Post (
 	name VARCHAR(100) null
 );
 
+create table LS_Product (
+	uuid_ VARCHAR(75) null,
+	productId LONG not null primary key,
+	name VARCHAR(150) null,
+	productTypeId LONG,
+	cost LONG,
+	amount LONG,
+	present BOOLEAN,
+	archived BOOLEAN,
+	description TEXT null
+);
+
+create table LS_ProductType (
+	uuid_ VARCHAR(75) null,
+	productTypeId LONG not null primary key,
+	name TEXT null
+);
+
 create table LS_Purchase (
 	uuid_ VARCHAR(75) null,
 	purchaseId LONG not null primary key,

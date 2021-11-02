@@ -1,28 +1,6 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="com.trollingcont.servicebuilder.model.Electronics">
-		<field name="uuid" type="String" />
-		<field name="productId" type="long" />
-		<field name="name" type="String">
-			<hint-collection name="productName" />
-		</field>
-		<field name="productTypeId" type="long" />
-		<field name="cost" type="long" />
-		<field name="amount" type="long" />
-		<field name="present" type="Boolean" />
-		<field name="archived" type="Boolean" />
-		<field name="description" type="String">
-			<hint-collection name="productDescription" />
-		</field>
-	</model>
-	<model name="com.trollingcont.servicebuilder.model.ElectronicsType">
-		<field name="uuid" type="String" />
-		<field name="productTypeId" type="long" />
-		<field name="name" type="String">
-			<hint-collection name="electronicsTypeName" />
-		</field>
-	</model>
 	<model name="com.trollingcont.servicebuilder.model.Employee">
 		<field name="uuid" type="String" />
 		<field name="employeeId" type="long" />
@@ -53,6 +31,28 @@
 			<hint-collection name="postName" />
 		</field>
 	</model>
+	<model name="com.trollingcont.servicebuilder.model.Product">
+		<field name="uuid" type="String" />
+		<field name="productId" type="long" />
+		<field name="name" type="String">
+			<hint-collection name="productName" />
+		</field>
+		<field name="productTypeId" type="long" />
+		<field name="cost" type="long" />
+		<field name="amount" type="long" />
+		<field name="present" type="Boolean" />
+		<field name="archived" type="Boolean" />
+		<field name="description" type="String">
+			<hint-collection name="productDescription" />
+		</field>
+	</model>
+	<model name="com.trollingcont.servicebuilder.model.ProductType">
+		<field name="uuid" type="String" />
+		<field name="productTypeId" type="long" />
+		<field name="name" type="String">
+			<hint-collection name="productDescription" />
+		</field>
+	</model>
 	<model name="com.trollingcont.servicebuilder.model.Purchase">
 		<field name="uuid" type="String" />
 		<field name="purchaseId" type="long" />
@@ -67,7 +67,7 @@
 		<field name="uuid" type="String" />
 		<field name="purchaseTypeId" type="long" />
 		<field name="name" type="String">
-			<hint-collection name="electronicsTypeName" />
+			<hint-collection name="productTypeName" />
 		</field>
 	</model>
 	<hint-collection name="postName">
@@ -76,7 +76,7 @@
 	<hint-collection name="purchaseTypeName">
 		<hint name="max-length">100</hint>
 	</hint-collection>
-	<hint-collection name="electronicsTypeName">
+	<hint-collection name="productTypeName">
 		<hint name="max-length">100</hint>
 	</hint-collection>
 	<hint-collection name="employeeName">

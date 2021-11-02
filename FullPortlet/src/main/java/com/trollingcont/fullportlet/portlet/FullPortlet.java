@@ -8,17 +8,17 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.sun.org.slf4j.internal.LoggerFactory;
 import com.trollingcont.fullportlet.constants.FullPortletKeys;
-import com.trollingcont.servicebuilder.model.Electronics;
-import com.trollingcont.servicebuilder.service.ElectronicsLocalService;
+import com.trollingcont.servicebuilder.exception.ProductTypeNameException;
+import com.trollingcont.servicebuilder.model.Product;
+import com.trollingcont.servicebuilder.model.ProductType;
+import com.trollingcont.servicebuilder.service.ProductLocalService;
+import com.trollingcont.servicebuilder.service.ProductTypeLocalService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.*;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author omskd
@@ -51,7 +51,7 @@ public class FullPortlet extends MVCPortlet {
 			throws PortalException {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				Electronics.class.getName(), request
+				Product.class.getName(), request
 		);
 
 		String name = ParamUtil.getString(request, "name");
@@ -64,7 +64,7 @@ public class FullPortlet extends MVCPortlet {
 
 		if (typeId > 0 && cost > 0 && amount > 0) {
 			try {
-				Electronics newProduct = _electronicsLocalService.addElectronics(
+				Product newProduct = _productLocalService.addProduct(
 						name, typeId, cost, amount, true, true, "Sample desc", serviceContext
 				);
 
@@ -100,10 +100,40 @@ public class FullPortlet extends MVCPortlet {
 		}
 	}
 
-	@Reference(unbind = "-")
-	protected void setElectronicsLocalService(ElectronicsLocalService electronicsLocalService) {
-		_electronicsLocalService = electronicsLocalService;
+	public void addProductType(ActionRequest request, ActionResponse response)
+			throws PortalException {
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				ProductType.class.getName(), request
+		);
+
+		String name = ParamUtil.getString(request, "productType");
+
+		try {
+			_productTypeLocalService.addProductType(name, serviceContext);
+		}
+		catch (ProductTypeNameException etne) {
+			SessionErrors.add(request, "missingProductTypeName");
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(request, "failedToAddProductType");
+		}
+
+		SessionMessages.add(request, "productTypeAdded");
+
+		PortalUtil.copyRequestParameters(request, response);
 	}
 
-	private ElectronicsLocalService _electronicsLocalService;
+	@Reference(unbind = "-")
+	protected void setElectronicsTypeLocalService(ProductTypeLocalService electronicsTypeLocalService) {
+		_productTypeLocalService = electronicsTypeLocalService;
+	}
+
+	@Reference(unbind = "-")
+	protected void setElectronicsLocalService(ProductLocalService productLocalService) {
+		_productLocalService = productLocalService;
+	}
+
+	private ProductTypeLocalService _productTypeLocalService;
+	private ProductLocalService _productLocalService;
 }

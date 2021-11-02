@@ -5,12 +5,21 @@
   Time: 15:06
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<%@ include file="../init.jsp" %>
+
+<portlet:renderURL var="viewURL">
+    <portlet:param name="mvcPath" value="/guestportlet/view.jsp"></portlet:param>
+</portlet:renderURL>
+
+<portlet:actionURL name="addProductType" var="addProductTypeURL"></portlet:actionURL>
+
+<aui:form action="<%= addProductTypeURL %>" name="<portlet:namespace />fm">
+    <aui:fieldset>
+        <aui:input name="productType"></aui:input>
+    </aui:fieldset>
+
+    <aui:button-row>
+        <aui:button type="submit"></aui:button>
+        <aui:button type="cancel" onClick="<%= viewURL %>"></aui:button>
+    </aui:button-row>
+</aui:form>

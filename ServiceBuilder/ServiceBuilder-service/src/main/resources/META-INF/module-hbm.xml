@@ -2,33 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="false" default-lazy="false">
-	<import class="com.trollingcont.servicebuilder.model.Electronics" />
-	<import class="com.trollingcont.servicebuilder.model.ElectronicsType" />
 	<import class="com.trollingcont.servicebuilder.model.Employee" />
 	<import class="com.trollingcont.servicebuilder.model.EmployeeRight" />
 	<import class="com.trollingcont.servicebuilder.model.Post" />
+	<import class="com.trollingcont.servicebuilder.model.Product" />
+	<import class="com.trollingcont.servicebuilder.model.ProductType" />
 	<import class="com.trollingcont.servicebuilder.model.Purchase" />
 	<import class="com.trollingcont.servicebuilder.model.PurchaseType" />
-	<class name="com.trollingcont.servicebuilder.model.impl.ElectronicsImpl" table="LS_Electronics">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="productId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="productTypeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="cost" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="amount" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="present" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="archived" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
-	<class name="com.trollingcont.servicebuilder.model.impl.ElectronicsTypeImpl" table="LS_ElectronicsType">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="productTypeId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
 	<class name="com.trollingcont.servicebuilder.model.impl.EmployeeImpl" table="LS_Employee">
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="employeeId" type="long">
 			<generator class="assigned" />
@@ -50,6 +30,26 @@
 	</class>
 	<class name="com.trollingcont.servicebuilder.model.impl.PostImpl" table="LS_Post">
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="postId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.trollingcont.servicebuilder.model.impl.ProductImpl" table="LS_Product">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="productId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="productTypeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="cost" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="amount" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="present" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="archived" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.trollingcont.servicebuilder.model.impl.ProductTypeImpl" table="LS_ProductType">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="productTypeId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />

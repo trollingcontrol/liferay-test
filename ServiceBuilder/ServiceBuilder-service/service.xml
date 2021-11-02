@@ -18,36 +18,36 @@
 		<!-- Female TRUE, Male FALSE -->
 		<column name="sex" type="Boolean" />
 
-<!--		&lt;!&ndash; PK fields &ndash;&gt;-->
-<!--		<column name="id" primary="true" type="long" />-->
-<!--		&lt;!&ndash; Group instance &ndash;&gt;-->
-<!--		<column name="groupId" type="long" />-->
-<!--		&lt;!&ndash; Audit fields &ndash;&gt;-->
-<!--		<column name="companyId" type="long" />-->
-<!--		<column name="userId" type="long" />-->
-<!--		<column name="userName" type="String" />-->
-<!--		<column name="createDate" type="Date" />-->
-<!--		<column name="modifiedDate" type="Date" />-->
-<!--		&lt;!&ndash; Other fields &ndash;&gt;-->
-<!--		<column name="field1" type="String" />-->
-<!--		<column name="field2" type="boolean" />-->
-<!--		<column name="field3" type="int" />-->
-<!--		<column name="field4" type="Date" />-->
-<!--		<column name="field5" type="String" />-->
-<!--		&lt;!&ndash; Order &ndash;&gt;-->
-<!--		<order by="asc">-->
-<!--			<order-column name="id" />-->
-<!--		</order>-->
-<!--		&lt;!&ndash; Finder methods &ndash;&gt;-->
-<!--		<finder name="Field2" return-type="Collection">-->
-<!--			<finder-column name="field2" />-->
-<!--		</finder>-->
-<!--		&lt;!&ndash; References &ndash;&gt;-->
-<!--		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />-->
-<!--		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />-->
+		<!--		&lt;!&ndash; PK fields &ndash;&gt;-->
+		<!--		<column name="id" primary="true" type="long" />-->
+		<!--		&lt;!&ndash; Group instance &ndash;&gt;-->
+		<!--		<column name="groupId" type="long" />-->
+		<!--		&lt;!&ndash; Audit fields &ndash;&gt;-->
+		<!--		<column name="companyId" type="long" />-->
+		<!--		<column name="userId" type="long" />-->
+		<!--		<column name="userName" type="String" />-->
+		<!--		<column name="createDate" type="Date" />-->
+		<!--		<column name="modifiedDate" type="Date" />-->
+		<!--		&lt;!&ndash; Other fields &ndash;&gt;-->
+		<!--		<column name="field1" type="String" />-->
+		<!--		<column name="field2" type="boolean" />-->
+		<!--		<column name="field3" type="int" />-->
+		<!--		<column name="field4" type="Date" />-->
+		<!--		<column name="field5" type="String" />-->
+		<!--		&lt;!&ndash; Order &ndash;&gt;-->
+		<!--		<order by="asc">-->
+		<!--			<order-column name="id" />-->
+		<!--		</order>-->
+		<!--		&lt;!&ndash; Finder methods &ndash;&gt;-->
+		<!--		<finder name="Field2" return-type="Collection">-->
+		<!--			<finder-column name="field2" />-->
+		<!--		</finder>-->
+		<!--		&lt;!&ndash; References &ndash;&gt;-->
+		<!--		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />-->
+		<!--		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />-->
 	</entity>
 
-	<entity local-service="true" name="Electronics" remote-service="true" uuid="true">
+	<entity local-service="true" name="Product" remote-service="true" uuid="true">
 
 		<column name="productId" primary="true" type="long" />
 
@@ -99,7 +99,7 @@
 
 	</entity>
 
-	<entity local-service="true" name="ElectronicsType" remote-service="true" uuid="true">
+	<entity local-service="true" name="ProductType" remote-service="true" uuid="true">
 
 		<column name="productTypeId" primary="true" type="long" />
 
