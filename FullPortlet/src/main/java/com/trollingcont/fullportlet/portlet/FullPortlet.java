@@ -111,6 +111,7 @@ public class FullPortlet extends MVCPortlet {
 
 		try {
 			_productTypeLocalService.addProductType(name, serviceContext);
+			SessionMessages.add(request, "productTypeAdded");
 		}
 		catch (ProductTypeNameException etne) {
 			SessionErrors.add(request, "missingProductTypeName");
@@ -119,9 +120,11 @@ public class FullPortlet extends MVCPortlet {
 			SessionErrors.add(request, "failedToAddProductType");
 		}
 
-		SessionMessages.add(request, "productTypeAdded");
-
 		PortalUtil.copyRequestParameters(request, response);
+
+		response.setRenderParameter(
+				"mvcPath", "/guestportlet/create_product_type.jsp"
+		);
 	}
 
 	@Reference(unbind = "-")

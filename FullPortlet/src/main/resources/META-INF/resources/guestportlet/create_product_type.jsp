@@ -23,3 +23,8 @@
         <aui:button type="cancel" onClick="<%= viewURL %>"></aui:button>
     </aui:button-row>
 </aui:form>
+
+<liferay-ui:success key="productTypeAdded" message="product-type-added" />
+
+<liferay-ui:error key="missingProductTypeName" message="missing-product-type-name" />
+<liferay-ui:error key="failedToAddProductType" message="failed-to-add-product-type" />
