@@ -1,4 +1,4 @@
-package com.trollingcont.fullportlet.portlet;
+package com.trollingcont.producttypes.portlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
@@ -8,7 +8,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.trollingcont.fullportlet.constants.FullPortletKeys;
+import com.trollingcont.producttypes.constants.ProductTypesPortletKeys;
 import com.trollingcont.servicebuilder.exception.ProductTypeNameException;
 import com.trollingcont.servicebuilder.model.Product;
 import com.trollingcont.servicebuilder.model.ProductType;
@@ -32,13 +32,13 @@ import java.io.IOException;
 		"javax.portlet.display-name=Full",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/guestportlet/view.jsp",
-		"javax.portlet.name=" + FullPortletKeys.FULL,
+		"javax.portlet.name=" + ProductTypesPortletKeys.FULL,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
 	},
 	service = Portlet.class
 )
-public class FullPortlet extends MVCPortlet {
+public class ProductTypesPortlet extends MVCPortlet {
 
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse)

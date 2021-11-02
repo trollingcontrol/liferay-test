@@ -1,7 +1,7 @@
-Bundle-Name: FullPortlet
-Bundle-SymbolicName: com.trollingcont.fullportlet
+Bundle-Name: ProductTypes
+Bundle-SymbolicName: com.trollingcont.producttypes
 Bundle-Version: 1.0.0
-Export-Package: com.trollingcont.fullportlet.constants
+Export-Package: com.trollingcont.producttypes.constants
 -contract: JavaPortlet,JavaServlet
 -jsp: *.jsp,*.jspf,*.jspx
 -metatype: *

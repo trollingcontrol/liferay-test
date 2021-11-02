@@ -6,8 +6,8 @@
     <groupId>liferay.test</groupId>
     <version>1.0.0</version>
   </parent>
-	<groupId>com.trollingcont.fullportlet</groupId>
-	<artifactId>FullPortlet</artifactId>
+	<groupId>com.trollingcont.producttypes</groupId>
+	<artifactId>ProductTypesPortlet</artifactId>
 	<version>1.0.0</version>
 	<profiles>
 		<profile>
