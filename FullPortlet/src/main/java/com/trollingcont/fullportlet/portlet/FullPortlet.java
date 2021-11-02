@@ -114,7 +114,14 @@ public class FullPortlet extends MVCPortlet {
 			SessionMessages.add(request, "productTypeAdded");
 		}
 		catch (ProductTypeNameException etne) {
-			SessionErrors.add(request, "missingProductTypeName");
+
+			switch (etne.errorCode()) {
+				case NAME_EMPTY:
+					SessionErrors.add(request, "missingProductTypeName");
+					break;
+				case NAME_TOO_LONG:
+					SessionErrors.add(request, "productTypeNameTooLong");
+			}
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(request, "failedToAddProductType");

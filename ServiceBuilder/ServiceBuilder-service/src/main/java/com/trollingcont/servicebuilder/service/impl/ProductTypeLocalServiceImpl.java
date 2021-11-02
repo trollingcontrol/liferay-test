@@ -50,6 +50,8 @@ public class ProductTypeLocalServiceImpl
 	 * Never reference this class directly. Use <code>com.trollingcont.servicebuilder.service.ProductTypeLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil</code>.
 	 */
 
+	private final int MAX_PRODUCT_NAME_TYPE_LENGTH = 100;
+
 	public ProductType addProductType(
 			String name,
 			ServiceContext serviceContext
@@ -92,8 +94,15 @@ public class ProductTypeLocalServiceImpl
 			throws PortalException {
 
 		if (name == null || name.isBlank()) {
-			throw new ProductTypeNameException();
+			throw new ProductTypeNameException(
+					ProductTypeNameException.ErrorCode.NAME_EMPTY
+			);
 		}
 
+		if (name.length() > MAX_PRODUCT_NAME_TYPE_LENGTH) {
+			throw new ProductTypeNameException(
+					ProductTypeNameException.ErrorCode.NAME_TOO_LONG
+			);
+		}
 	}
 }

@@ -54,7 +54,7 @@ create table LS_Product (
 create table LS_ProductType (
 	uuid_ VARCHAR(75) null,
 	productTypeId LONG not null primary key,
-	name TEXT null
+	name VARCHAR(100) null
 );
 
 create table LS_Purchase (
