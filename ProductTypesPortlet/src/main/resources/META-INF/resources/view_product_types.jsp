@@ -1,14 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 01.11.2021
-  Time: 15:06
-  To change this template use File | Settings | File Templates.
---%>
-<%@ include file="../init.jsp" %>
+<%@ include file="init.jsp" %>
 
-<portlet:renderURL var="viewURL">
-    <portlet:param name="mvcPath" value="/guestportlet/view.jsp"></portlet:param>
+<portlet:renderURL var="addProductTypeURL">
+    <portlet:param name="mvcPath" value="/guestportlet/add_product_type.jsp"></portlet:param>
 </portlet:renderURL>
 
 <portlet:actionURL name="addProductType" var="addProductTypeURL"></portlet:actionURL>
@@ -20,7 +13,6 @@
 
     <aui:button-row>
         <aui:button type="submit"></aui:button>
-        <aui:button type="cancel" onClick="<%= viewURL %>"></aui:button>
     </aui:button-row>
 </aui:form>
 

@@ -5,7 +5,7 @@
   Time: 11:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ include file="../init.jsp" %>
+<%@ include file="init.jsp" %>
 
 <portlet:renderURL var="viewURL">
     <portlet:param name="mvcPath" value="/guestportlet/view.jsp"></portlet:param>
