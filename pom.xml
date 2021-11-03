@@ -11,12 +11,17 @@
     <module>themes</module>
     <module>ServiceBuilder</module>
     <module>ProductTypesPortlet</module>
+    <module>ProductTypesListPortlet</module>
   </modules>
   <properties>
     <liferay.repository.url>https://repository-cdn.liferay.com/nexus/content/groups/public/</liferay.repository.url>
     <liferay.bom.version>7.3.5</liferay.bom.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <liferay.workspace.bundle.url>https://releases-cdn.liferay.com/portal/7.3.5-ga6/liferay-ce-portal-tomcat-7.3.5-ga6-20200930172312275.tar.gz</liferay.workspace.bundle.url>
+    <liferay.workspace.bundle.url>
+      https://releases-cdn.liferay.com/portal/7.3.5-ga6/liferay-ce-portal-tomcat-7.3.5-ga6-20200930172312275.tar.gz
+    </liferay.workspace.bundle.url>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
   <dependencyManagement>
     <dependencies>

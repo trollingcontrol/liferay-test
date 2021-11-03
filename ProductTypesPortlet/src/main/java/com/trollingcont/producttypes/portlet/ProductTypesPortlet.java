@@ -10,15 +10,14 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.trollingcont.producttypes.constants.ProductTypesPortletKeys;
 import com.trollingcont.servicebuilder.exception.ProductTypeNameException;
-import com.trollingcont.servicebuilder.model.Product;
 import com.trollingcont.servicebuilder.model.ProductType;
-import com.trollingcont.servicebuilder.service.ProductLocalService;
 import com.trollingcont.servicebuilder.service.ProductTypeLocalService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import javax.portlet.*;
-import java.io.IOException;
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.Portlet;
 
 /**
  * @author omskd
@@ -39,13 +38,6 @@ import java.io.IOException;
 	service = Portlet.class
 )
 public class ProductTypesPortlet extends MVCPortlet {
-
-	/*@Override
-	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
-			throws IOException, PortletException {
-
-		super.render(renderRequest, renderResponse);
-	}*/
 
 	public void addProductType(ActionRequest request, ActionResponse response)
 			throws PortalException {
@@ -79,6 +71,11 @@ public class ProductTypesPortlet extends MVCPortlet {
 		response.setRenderParameter(
 				"mvcPath", "/view_product_types.jsp"
 		);
+	}
+
+	public void editProductType(ActionRequest request, ActionResponse response)
+		throws PortalException {
+
 	}
 
 	@Reference(unbind = "-")

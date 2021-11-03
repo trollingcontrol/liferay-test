@@ -1,20 +1,30 @@
 <%@ include file="init.jsp" %>
 
-<portlet:renderURL var="addProductTypeURL">
-    <portlet:param name="mvcPath" value="/guestportlet/add_product_type.jsp"></portlet:param>
-</portlet:renderURL>
+<portlet:actionURL name="addProductType" var="addProductTypeURL" />
+<portlet:actionURL name="editProductType" var="editProductTypeURL" />
 
-<portlet:actionURL name="addProductType" var="addProductTypeURL"></portlet:actionURL>
+<div id="ProductTypeManagementPanel">
+    <aui:form action="<%= addProductTypeURL %>" name="<portlet:namespace />fm">
+        <aui:fieldset>
+            <aui:input name="productType" />
+        </aui:fieldset>
 
-<aui:form action="<%= addProductTypeURL %>" name="<portlet:namespace />fm">
-    <aui:fieldset>
-        <aui:input name="productType"></aui:input>
-    </aui:fieldset>
+        <aui:button-row>
+            <aui:button type="submit" />
+        </aui:button-row>
+    </aui:form>
 
-    <aui:button-row>
-        <aui:button type="submit"></aui:button>
-    </aui:button-row>
-</aui:form>
+    <aui:form action="<%= editProductTypeURL %>" name="<portlet:namespace />fm">
+        <aui:fieldset>
+            <aui:input name="productTypeId" />
+            <aui:input name="productTypeNewName" />
+        </aui:fieldset>
+
+        <aui:button-row>
+            <aui:button type="submit" />
+        </aui:button-row>
+    </aui:form>
+</div>
 
 <liferay-ui:success key="productTypeAdded" message="product-type-added" />
 <liferay-ui:error key="productTypeNameTooLong" message="product-type-name-too-long" />
