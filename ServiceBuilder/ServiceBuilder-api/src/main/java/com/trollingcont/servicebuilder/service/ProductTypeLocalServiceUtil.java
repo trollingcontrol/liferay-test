@@ -268,6 +268,13 @@ public class ProductTypeLocalServiceUtil {
 		return getService().getProductTypes(start, end);
 	}
 
+	public static List<ProductType> getProductTypesByProductTypeName(
+			String name)
+		throws PortalException {
+
+		return getService().getProductTypesByProductTypeName(name);
+	}
+
 	/**
 	 * Returns the number of product types.
 	 *
@@ -275,15 +282,6 @@ public class ProductTypeLocalServiceUtil {
 	 */
 	public static int getProductTypesCount() {
 		return getService().getProductTypesCount();
-	}
-
-	public static ProductType updateProductType(
-			long productTypeId, String name,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws PortalException {
-
-		return getService().updateProductType(
-			productTypeId, name, serviceContext);
 	}
 
 	/**
@@ -298,6 +296,14 @@ public class ProductTypeLocalServiceUtil {
 	 */
 	public static ProductType updateProductType(ProductType productType) {
 		return getService().updateProductType(productType);
+	}
+
+	public static ProductType updateProductType(
+			ProductType productType,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().updateProductType(productType, serviceContext);
 	}
 
 	public static ProductTypeLocalService getService() {

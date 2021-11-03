@@ -245,6 +245,10 @@ public interface ProductTypeLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<ProductType> getProductTypes(int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<ProductType> getProductTypesByProductTypeName(String name)
+		throws PortalException;
+
 	/**
 	 * Returns the number of product types.
 	 *
@@ -252,10 +256,6 @@ public interface ProductTypeLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getProductTypesCount();
-
-	public ProductType updateProductType(
-			long productTypeId, String name, ServiceContext serviceContext)
-		throws PortalException;
 
 	/**
 	 * Updates the product type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -269,5 +269,9 @@ public interface ProductTypeLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public ProductType updateProductType(ProductType productType);
+
+	public ProductType updateProductType(
+			ProductType productType, ServiceContext serviceContext)
+		throws PortalException;
 
 }

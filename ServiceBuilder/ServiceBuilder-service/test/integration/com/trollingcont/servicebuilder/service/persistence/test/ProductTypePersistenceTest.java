@@ -151,6 +151,15 @@ public class ProductTypePersistenceTest {
 	}
 
 	@Test
+	public void testCountByProductName() throws Exception {
+		_persistence.countByProductName("");
+
+		_persistence.countByProductName("null");
+
+		_persistence.countByProductName((String)null);
+	}
+
+	@Test
 	public void testFindByPrimaryKeyExisting() throws Exception {
 		ProductType newProductType = addProductType();
 

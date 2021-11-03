@@ -105,6 +105,10 @@
 
 		<column name="name" type="String" />
 
+		<finder name="ProductName" return-type="Collection">
+			<finder-column name="name"></finder-column>
+		</finder>
+
 	</entity>
 
 	<entity local-service="true" name="PurchaseType" remote-service="true" uuid="true">

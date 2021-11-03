@@ -295,6 +295,14 @@ public class ProductTypeLocalServiceWrapper
 		return _productTypeLocalService.getProductTypes(start, end);
 	}
 
+	@Override
+	public java.util.List<com.trollingcont.servicebuilder.model.ProductType>
+			getProductTypesByProductTypeName(String name)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _productTypeLocalService.getProductTypesByProductTypeName(name);
+	}
+
 	/**
 	 * Returns the number of product types.
 	 *
@@ -303,16 +311,6 @@ public class ProductTypeLocalServiceWrapper
 	@Override
 	public int getProductTypesCount() {
 		return _productTypeLocalService.getProductTypesCount();
-	}
-
-	@Override
-	public com.trollingcont.servicebuilder.model.ProductType updateProductType(
-			long productTypeId, String name,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _productTypeLocalService.updateProductType(
-			productTypeId, name, serviceContext);
 	}
 
 	/**
@@ -330,6 +328,16 @@ public class ProductTypeLocalServiceWrapper
 		com.trollingcont.servicebuilder.model.ProductType productType) {
 
 		return _productTypeLocalService.updateProductType(productType);
+	}
+
+	@Override
+	public com.trollingcont.servicebuilder.model.ProductType updateProductType(
+			com.trollingcont.servicebuilder.model.ProductType productType,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _productTypeLocalService.updateProductType(
+			productType, serviceContext);
 	}
 
 	@Override

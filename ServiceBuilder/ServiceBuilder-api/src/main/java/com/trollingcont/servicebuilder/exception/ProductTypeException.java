@@ -2,11 +2,11 @@ package com.trollingcont.servicebuilder.exception;
 
 import com.liferay.portal.kernel.exception.PortalException;
 
-public class ProductTypeNameException extends PortalException {
+public class ProductTypeException extends PortalException {
 
     private final ErrorCode errorCode;
 
-    public ProductTypeNameException(ErrorCode errorCode) {
+    public ProductTypeException(ErrorCode errorCode) {
         this.errorCode = errorCode;
     }
 

@@ -18,11 +18,13 @@ import com.liferay.portal.aop.AopService;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.trollingcont.servicebuilder.exception.ProductTypeNameException;
+import com.trollingcont.servicebuilder.exception.ProductTypeException;
 import com.trollingcont.servicebuilder.model.ProductType;
 import com.trollingcont.servicebuilder.service.base.ProductTypeLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+
+import java.util.List;
 
 /**
  * The implementation of the product type local service.
@@ -73,16 +75,12 @@ public class ProductTypeLocalServiceImpl
 	}
 
 	public ProductType updateProductType(
-			long productTypeId,
-			String name,
+			ProductType productType,
 			ServiceContext serviceContext
 	) throws PortalException {
 
-		validate(name);
+		validate(productType.getName());
 
-		ProductType productType = productTypePersistence.findByPrimaryKey(productTypeId);
-
-		productType.setName(name);
 		productType.setExpandoBridgeAttributes(serviceContext);
 
 		productTypePersistence.update(productType);
@@ -90,18 +88,28 @@ public class ProductTypeLocalServiceImpl
 		return productType;
 	}
 
+
+
+	public List<ProductType> getProductTypesByProductTypeName(String name)
+		throws PortalException {
+
+		validate(name);
+
+		return productTypePersistence.findByProductName(name);
+	}
+
 	protected void validate(String name)
 			throws PortalException {
 
 		if (name == null || name.isBlank()) {
-			throw new ProductTypeNameException(
-					ProductTypeNameException.ErrorCode.NAME_EMPTY
+			throw new ProductTypeException(
+					ProductTypeException.ErrorCode.NAME_EMPTY
 			);
 		}
 
 		if (name.length() > MAX_PRODUCT_NAME_TYPE_LENGTH) {
-			throw new ProductTypeNameException(
-					ProductTypeNameException.ErrorCode.NAME_TOO_LONG
+			throw new ProductTypeException(
+					ProductTypeException.ErrorCode.NAME_TOO_LONG
 			);
 		}
 	}
