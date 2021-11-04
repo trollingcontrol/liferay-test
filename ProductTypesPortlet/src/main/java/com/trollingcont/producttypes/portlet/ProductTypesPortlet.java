@@ -161,38 +161,6 @@ public class ProductTypesPortlet extends MVCPortlet {
 		}
 	}
 
-	public void findProductType(ActionRequest request, ActionResponse response)
-			throws PortalException {
-
-		String strId = ParamUtil.getString(request, "productTypeId");
-		boolean isSuccessful = false;
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				ProductType.class.getName(), request
-		);
-
-		try {
-			ProductType productType = _productTypeLocalService.getProductType(Long.parseUnsignedLong(strId));
-
-			request.setAttribute("productTypeId", productType.getProductTypeId());
-			request.setAttribute("productTypeName", productType.getName());
-			request.setAttribute("showProductInfo", true);
-		}
-		catch (NumberFormatException nfe) {
-			SessionErrors.add(request, "invalidProductTypeId");
-		}
-		catch (NoSuchProductTypeException nspte) {
-			SessionErrors.add(request, "productTypeNotFound");
-		}
-		catch (PortalException pe) {
-			SessionErrors.add(request, "errorGettingProductType");
-		}
-
-		PortalUtil.copyRequestParameters(request, response);
-
-		response.setRenderParameter("mvcPath", "/edit_product_type.jsp");
-	}
-
 	@Reference(unbind = "-")
 	protected void setElectronicsTypeLocalService(ProductTypeLocalService electronicsTypeLocalService) {
 		_productTypeLocalService = electronicsTypeLocalService;
