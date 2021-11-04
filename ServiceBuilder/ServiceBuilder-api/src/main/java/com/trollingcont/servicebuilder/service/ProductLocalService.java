@@ -253,12 +253,6 @@ public interface ProductLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getProductsCount();
 
-	public Product updateElectronics(
-			long productId, String name, long productTypeId, long cost,
-			long amount, boolean present, boolean archived, String description,
-			ServiceContext serviceContext)
-		throws PortalException;
-
 	/**
 	 * Updates the product in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
@@ -271,5 +265,8 @@ public interface ProductLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Product updateProduct(Product product);
+
+	public Product updateProduct(Product product, ServiceContext serviceContext)
+		throws PortalException;
 
 }

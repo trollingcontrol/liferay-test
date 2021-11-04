@@ -18,6 +18,7 @@ import com.liferay.portal.aop.AopService;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.trollingcont.servicebuilder.exception.ProductException;
 import com.trollingcont.servicebuilder.model.Product;
 import com.trollingcont.servicebuilder.service.base.ProductLocalServiceBaseImpl;
 
@@ -47,6 +48,9 @@ public class ProductLocalServiceImpl extends ProductLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.trollingcont.servicebuilder.service.ProductLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.trollingcont.servicebuilder.service.ProductLocalServiceUtil</code>.
 	 */
+
+	private final int MAX_PRODUCT_NAME_LENGTH = 150;
+	private final int MAX_PRODUCT_DESCRIPTION_LENGTH = 5000;
 
 	public Product addProduct(
 			String name,
@@ -80,31 +84,13 @@ public class ProductLocalServiceImpl extends ProductLocalServiceBaseImpl {
 		return product;
 	}
 
-	public Product updateElectronics(
-			long productId,
-			String name,
-			long productTypeId, // LINK
-			long cost,
-			long amount,
-			boolean present,
-			boolean archived,
-			String description,
+	public Product updateProduct(
+			Product product,
 			ServiceContext serviceContext
 	) throws PortalException {
 
-		validate(name, description, amount, cost);
-
-		Product product = productPersistence.findByPrimaryKey(productId);
-
-		product.setName(name);
-		product.setProductTypeId(productTypeId);
-		product.setCost(cost);
-		product.setAmount(amount);
-		product.setPresent(present);
-		product.setArchived(archived);
-		product.setDescription(description);
+		validate(product.getName(), product.getDescription(), product.getAmount(), product.getCost());
 		product.setExpandoBridgeAttributes(serviceContext);
-
 		productPersistence.update(product);
 
 		return product;
@@ -117,20 +103,28 @@ public class ProductLocalServiceImpl extends ProductLocalServiceBaseImpl {
 			long cost
 	) throws PortalException {
 
-		if (name == null || name.isEmpty()) {
-			throw new PortalException("Name is null or empty");
+		if (name == null || name.isBlank()) {
+			throw new ProductException(ProductException.ErrorCode.NAME_EMPTY);
 		}
 
-		if (description == null || description.isEmpty()) {
-			throw new PortalException("Descrption is null or empty");
+		if (name.length() > MAX_PRODUCT_NAME_LENGTH) {
+			throw new ProductException(ProductException.ErrorCode.NAME_TOO_LONG);
+		}
+
+		if (description == null || description.isBlank()) {
+			throw new ProductException(ProductException.ErrorCode.DESCRIPTION_EMPTY);
+		}
+
+		if (description.length() > MAX_PRODUCT_DESCRIPTION_LENGTH) {
+			throw new ProductException(ProductException.ErrorCode.DESCRIPTION_TOO_LONG);
 		}
 
 		if (cost < 0) {
-			throw new PortalException("Cost is less then 0");
+			throw new ProductException(ProductException.ErrorCode.INVALID_COST);
 		}
 
 		if (amount < 0) {
-			throw new PortalException("Amount is less then 0");
+			throw new ProductException(ProductException.ErrorCode.INVALID_AMOUNT);
 		}
 
 	}

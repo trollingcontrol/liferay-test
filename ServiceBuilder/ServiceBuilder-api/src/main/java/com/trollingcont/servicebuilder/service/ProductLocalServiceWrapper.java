@@ -304,18 +304,6 @@ public class ProductLocalServiceWrapper
 		return _productLocalService.getProductsCount();
 	}
 
-	@Override
-	public com.trollingcont.servicebuilder.model.Product updateElectronics(
-			long productId, String name, long productTypeId, long cost,
-			long amount, boolean present, boolean archived, String description,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _productLocalService.updateElectronics(
-			productId, name, productTypeId, cost, amount, present, archived,
-			description, serviceContext);
-	}
-
 	/**
 	 * Updates the product in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
@@ -331,6 +319,15 @@ public class ProductLocalServiceWrapper
 		com.trollingcont.servicebuilder.model.Product product) {
 
 		return _productLocalService.updateProduct(product);
+	}
+
+	@Override
+	public com.trollingcont.servicebuilder.model.Product updateProduct(
+			com.trollingcont.servicebuilder.model.Product product,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _productLocalService.updateProduct(product, serviceContext);
 	}
 
 	@Override

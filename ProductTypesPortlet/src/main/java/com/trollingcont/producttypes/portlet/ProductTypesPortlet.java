@@ -162,7 +162,7 @@ public class ProductTypesPortlet extends MVCPortlet {
 	}
 
 	@Reference(unbind = "-")
-	protected void setElectronicsTypeLocalService(ProductTypeLocalService electronicsTypeLocalService) {
+	protected void setProductTypeLocalService(ProductTypeLocalService electronicsTypeLocalService) {
 		_productTypeLocalService = electronicsTypeLocalService;
 	}
 
