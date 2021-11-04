@@ -27,12 +27,19 @@
     }
 </script>
 
-<p><%= request.getAttribute("productTypeName") %></p>
+<%
+    String productInfo = (request.getAttribute("showProductInfo") != null) ?
+        String.format(
+			"Information for product type ID %d<br>Name: %s",
+			(long) request.getAttribute("productTypeId"),
+			request.getAttribute("productTypeName")
+		) : "";
+%>
 
-<aui:form action="<%= deleteProductTypeURL  %>" name="editForm" method="post">
+<aui:form action="<%= deleteProductTypeURL %>" name="editForm" method="post">
     <aui:fieldset>
         <aui:input name="productTypeId" />
-        <aui:input name="productTypeName" value='<%= request.getAttribute("productTypeName") %>' />
+        <aui:input name="productTypeName" />
     </aui:fieldset>
 
     <liferay-ui:error key="productTypeNameTooLong" message="product-type-name-too-long" />
@@ -52,3 +59,7 @@
         <aui:button type="cancel" onClick="<%= viewURL %>" />
     </aui:button-row>
 </aui:form>
+
+<p>
+    <%= productInfo %>
+</p>

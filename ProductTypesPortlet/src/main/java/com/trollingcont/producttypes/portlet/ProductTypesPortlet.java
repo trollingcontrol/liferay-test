@@ -40,18 +40,8 @@ import java.io.IOException;
 	service = Portlet.class
 )
 public class ProductTypesPortlet extends MVCPortlet {
+
 	Log log = LogFactoryUtil.getLog(ProductTypesPortlet.class.getName());
-
-	@Override
-	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
-			throws IOException, PortletException {
-
-		String productTypeName = (String) renderRequest.getAttribute("productTypeName");
-
-		System.out.printf("PRODUCT TYPE NAME = %s\n", productTypeName);
-
-		super.render(renderRequest, renderResponse);
-	}
 
 	public void addProductType(ActionRequest request, ActionResponse response)
 			throws PortalException {
@@ -157,24 +147,22 @@ public class ProductTypesPortlet extends MVCPortlet {
 	public void deleteProductType(ActionRequest request, ActionResponse response)
 			throws PortalException {
 
-		long id = ParamUtil.getLong(request, "productTypeId", -1);
+		String strId = ParamUtil.getString(request, "productTypeId");
 		boolean isSuccessful = false;
 
-		if (id > 0) {
-			try {
-				_productTypeLocalService.deleteProductType(id);
-				SessionMessages.add(request, "productTypeDeleted");
-				isSuccessful = true;
-			}
-			catch (NoSuchProductTypeException nspte) {
-				SessionErrors.add(request, "productTypeNotFound");
-			}
-			catch (PortalException pe) {
-				SessionErrors.add(request, "errorDeletingProductType");
-			}
+		try {
+			_productTypeLocalService.deleteProductType(Long.parseUnsignedLong(strId));
+			SessionMessages.add(request, "productTypeDeleted");
+			isSuccessful = true;
 		}
-		else {
+		catch (NumberFormatException nfe) {
 			SessionErrors.add(request, "invalidProductTypeId");
+		}
+		catch (NoSuchProductTypeException nspte) {
+			SessionErrors.add(request, "productTypeNotFound");
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(request, "errorDeletingProductType");
 		}
 
 		PortalUtil.copyRequestParameters(request, response);
@@ -199,7 +187,10 @@ public class ProductTypesPortlet extends MVCPortlet {
 
 		try {
 			ProductType productType = _productTypeLocalService.getProductType(Long.parseUnsignedLong(strId));
+
+			request.setAttribute("productTypeId", productType.getProductTypeId());
 			request.setAttribute("productTypeName", productType.getName());
+			request.setAttribute("showProductInfo", true);
 		}
 		catch (NumberFormatException nfe) {
 			SessionErrors.add(request, "invalidProductTypeId");

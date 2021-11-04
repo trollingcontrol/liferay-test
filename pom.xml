@@ -11,8 +11,6 @@
     <module>themes</module>
     <module>ServiceBuilder</module>
     <module>ProductTypesPortlet</module>
-    <module>ProductTypesListPortlet</module>
-    <module>AddProductTypePortlet</module>
   </modules>
   <properties>
     <liferay.repository.url>https://repository-cdn.liferay.com/nexus/content/groups/public/</liferay.repository.url>
@@ -65,7 +63,7 @@
     <plugins>
       <plugin>
         <configuration>
-          <liferayHome>C:\liferay-ce-portal-7.3.5-ga6</liferayHome>
+          <liferayHome>C:\Users\omskd\Desktop\Temp\Liferay\liferay-ce-portal-7.3.5-ga6</liferayHome>
         </configuration>
         <groupId>com.liferay</groupId>
         <artifactId>com.liferay.portal.tools.bundle.support</artifactId>
