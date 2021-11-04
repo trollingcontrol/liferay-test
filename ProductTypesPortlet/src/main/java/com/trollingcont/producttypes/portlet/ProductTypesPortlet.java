@@ -133,17 +133,8 @@ public class ProductTypesPortlet extends MVCPortlet {
 			SessionErrors.add(request, "productTypeNotFound");
 		}
 		catch (PortalException pe) {
-			SessionErrors.add(request, "errorDeletingProductType");
+			SessionErrors.add(request, "errorUpdatingProductType");
 		}
-
-		/*PortalUtil.copyRequestParameters(request, response);
-
-		if (isSuccessful) {
-			response.setRenderParameter("mvcPath", "/view.jsp");
-		}
-		else {
-			response.setRenderParameter("mvcPath", "/edit_product_type.jsp");
-		}*/
 
 		if (!isSuccessful) {
 			response.setRenderParameter("mvcPath", "/edit_product_type.jsp");
