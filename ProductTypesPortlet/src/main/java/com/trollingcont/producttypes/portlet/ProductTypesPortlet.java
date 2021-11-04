@@ -10,6 +10,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.trollingcont.producttypes.constants.ProductTypesPortletKeys;
 import com.trollingcont.servicebuilder.exception.NoSuchProductTypeException;
 import com.trollingcont.servicebuilder.exception.ProductTypeException;
@@ -18,8 +19,9 @@ import com.trollingcont.servicebuilder.service.ProductTypeLocalService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import javax.portlet.*;
-import java.io.IOException;
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.Portlet;
 
 /**
  * @author omskd
@@ -94,7 +96,7 @@ public class ProductTypesPortlet extends MVCPortlet {
 			throws PortalException {
 
 		String strId = ParamUtil.getString(request, "productTypeId");
-		String name = ParamUtil.getString(request, "productTypeName");
+		String name = ParamUtil.getString(request, "newProductTypeName");
 		boolean isSuccessful = false;
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
@@ -134,12 +136,16 @@ public class ProductTypesPortlet extends MVCPortlet {
 			SessionErrors.add(request, "errorDeletingProductType");
 		}
 
-		PortalUtil.copyRequestParameters(request, response);
+		/*PortalUtil.copyRequestParameters(request, response);
 
 		if (isSuccessful) {
 			response.setRenderParameter("mvcPath", "/view.jsp");
 		}
 		else {
+			response.setRenderParameter("mvcPath", "/edit_product_type.jsp");
+		}*/
+
+		if (!isSuccessful) {
 			response.setRenderParameter("mvcPath", "/edit_product_type.jsp");
 		}
 	}
@@ -147,13 +153,11 @@ public class ProductTypesPortlet extends MVCPortlet {
 	public void deleteProductType(ActionRequest request, ActionResponse response)
 			throws PortalException {
 
-		String strId = ParamUtil.getString(request, "productTypeId");
-		boolean isSuccessful = false;
+		String strId = ParamUtil.getString(request, "productTypeIdToBeDeleted");
 
 		try {
 			_productTypeLocalService.deleteProductType(Long.parseUnsignedLong(strId));
 			SessionMessages.add(request, "productTypeDeleted");
-			isSuccessful = true;
 		}
 		catch (NumberFormatException nfe) {
 			SessionErrors.add(request, "invalidProductTypeId");
@@ -163,15 +167,6 @@ public class ProductTypesPortlet extends MVCPortlet {
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(request, "errorDeletingProductType");
-		}
-
-		PortalUtil.copyRequestParameters(request, response);
-
-		if (isSuccessful) {
-			response.setRenderParameter("mvcPath", "/view.jsp");
-		}
-		else {
-			response.setRenderParameter("mvcPath", "/edit_product_type.jsp");
 		}
 	}
 
@@ -206,6 +201,11 @@ public class ProductTypesPortlet extends MVCPortlet {
 
 		response.setRenderParameter("mvcPath", "/edit_product_type.jsp");
 	}
+
+	public void rowEditProductType(ActionRequest request, ActionResponse response) {
+		log.info(String.format("PRODUCT = '%s'", request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW)));
+	}
+	//////////////////////////////////////////////////////////////////////////////////////////
 
 	@Reference(unbind = "-")
 	protected void setElectronicsTypeLocalService(ProductTypeLocalService electronicsTypeLocalService) {

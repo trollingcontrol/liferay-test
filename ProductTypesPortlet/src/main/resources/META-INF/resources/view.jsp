@@ -9,8 +9,7 @@
 </portlet:renderURL>
 
 <aui:button-row>
-    <aui:button onClick="<%= addProductTypeURL %>" value="Add type" />
-    <aui:button onClick="<%= editProductTypeURL %>" value="Edit/delete type" />
+    <aui:button onClick="<%= addProductTypeURL %>" value="+" />
 </aui:button-row>
 
 <liferay-ui:search-container total="<%= ProductTypeLocalServiceUtil.getProductTypesCount() %>">
@@ -26,6 +25,7 @@
 
         <liferay-ui:search-container-column-text property="productTypeId" name="ID" />
         <liferay-ui:search-container-column-text property="name" name="Name" />
+        <liferay-ui:search-container-column-jsp path="/product_types_actions.jsp" />
 
     </liferay-ui:search-container-row>
 
