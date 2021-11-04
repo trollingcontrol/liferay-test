@@ -193,11 +193,6 @@ public class ProductTypesPortlet extends MVCPortlet {
 		response.setRenderParameter("mvcPath", "/edit_product_type.jsp");
 	}
 
-	public void rowEditProductType(ActionRequest request, ActionResponse response) {
-		log.info(String.format("PRODUCT = '%s'", request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW)));
-	}
-	//////////////////////////////////////////////////////////////////////////////////////////
-
 	@Reference(unbind = "-")
 	protected void setElectronicsTypeLocalService(ProductTypeLocalService electronicsTypeLocalService) {
 		_productTypeLocalService = electronicsTypeLocalService;
