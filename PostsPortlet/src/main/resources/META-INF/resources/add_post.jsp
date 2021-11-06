@@ -11,9 +11,9 @@
         <aui:input name="name" />
     </aui:fieldset>
 
-    <liferay-ui:error key="productTypeNameTooLong" message="product-type-name-too-long" />
-    <liferay-ui:error key="missingProductTypeName" message="missing-product-type-name" />
-    <liferay-ui:error key="failedToAddProductType" message="failed-to-add-product-type" />
+    <liferay-ui:error key="nameTooLong" message="name-too-long" />
+    <liferay-ui:error key="nameEmpty" message="name-empty" />
+    <liferay-ui:error key="errorAddingPost" message="error-adding-post" />
 
     <aui:button-row>
         <aui:button value="add-button" type="submit" />

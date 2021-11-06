@@ -17,6 +17,7 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
 
+import com.trollingcont.servicebuilder.exception.NoSuchPostException;
 import com.trollingcont.servicebuilder.exception.PostException;
 import com.trollingcont.servicebuilder.model.Post;
 import com.trollingcont.servicebuilder.model.Product;
@@ -60,7 +61,7 @@ public class PostsPortlet extends MVCPortlet {
 		try {
 			_postLocalService.addPost(name, serviceContext);
 
-			SessionMessages.add(request, "productTypeAdded");
+			SessionMessages.add(request, "postAdded");
 
 			PortalUtil.copyRequestParameters(request, response);
 
@@ -92,12 +93,81 @@ public class PostsPortlet extends MVCPortlet {
 		}
 	}
 
-	public void editPost(ActionRequest request, ActionResponse response) {
+	public void editPost(ActionRequest request, ActionResponse response) throws PortalException {
+
+		String id = ParamUtil.getString(request, "id");
+		String name = ParamUtil.getString(request, "newName");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				Post.class.getName(), request
+		);
+
+		boolean isSuccessful = false;
+
+		try {
+			Post post = _postLocalService.getPost(Long.parseUnsignedLong(id));
+
+			post.setName(name);
+
+			_postLocalService.updatePost(post, serviceContext);
+
+			SessionMessages.add(request, "postUpdated");
+
+			PortalUtil.copyRequestParameters(request, response);
+
+			response.setRenderParameter(
+					"mvcPath", "/view.jsp"
+			);
+
+			isSuccessful = true;
+		}
+		catch (NumberFormatException nfe) {
+			SessionErrors.add(request, "invalidNumbers");
+		}
+		catch (PostException pe) {
+			switch (pe.errorCode()) {
+				case NAME_TOO_LONG:
+					SessionErrors.add(request, "nameTooLong");
+					break;
+				case NAME_EMPTY:
+					SessionErrors.add(request, "nameEmpty");
+			}
+		}
+		catch (NoSuchPostException nspe) {
+			SessionErrors.add(request, "postNotFound");
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(request, "errorUpdatingPost");
+		}
+
+		if (!isSuccessful) {
+			PortalUtil.copyRequestParameters(request, response);
+
+			response.setRenderParameter(
+					"mvcPath", "/edit_post.jsp"
+			);
+		}
 
 	}
 
 	public void deletePost(ActionRequest request, ActionResponse response) {
 
+		String postId = ParamUtil.getString(request, "postIdToBeDeleted");
+
+		try {
+			_postLocalService.deletePost(Long.parseUnsignedLong(postId));
+
+			SessionMessages.add(request, "postDeleted");
+		}
+		catch (NumberFormatException nfe) {
+			SessionErrors.add(request, "invalidPostId");
+		}
+		catch (NoSuchPostException nspe) {
+			SessionErrors.add(request, "postIdNotFound");
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(request, "errorDeletingPost");
+		}
 	}
 
 	@Reference(unbind = "-")

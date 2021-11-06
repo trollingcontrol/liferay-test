@@ -19,6 +19,8 @@
                     ) %>"
     />
 
+    <liferay-ui:error key="errorDeletingPost" message="error-deleting-post" />
+
     <liferay-ui:search-container-row
             className="com.trollingcont.servicebuilder.model.Post"
             modelVar="post">
@@ -33,7 +35,6 @@
 
 </liferay-ui:search-container>
 
-<liferay-ui:success key="productNameNotChanged" message="product-type-name-not-changed" />
-<liferay-ui:success key="productTypeAdded" message="product-type-added" />
-<liferay-ui:success key="productTypeDeleted" message="product-type-deleted" />
-<liferay-ui:success key="productTypeUpdated" message="product-type-updated" />
+<liferay-ui:success key="postAdded" message="post-added" />
+<liferay-ui:success key="postUpdated" message="post-updated" />
+<liferay-ui:success key="postDeleted" message="post-deleted" />
