@@ -1,6 +1,5 @@
 package com.trollingcont.productsportlet.portlet;
 
-import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -12,10 +11,10 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.trollingcont.productsportlet.constants.ProductsPortletKeys;
+import com.trollingcont.servicebuilder.exception.NoSuchProductException;
 import com.trollingcont.servicebuilder.exception.NoSuchProductTypeException;
 import com.trollingcont.servicebuilder.exception.ProductException;
 import com.trollingcont.servicebuilder.model.Product;
-import com.trollingcont.servicebuilder.model.ProductType;
 import com.trollingcont.servicebuilder.service.ProductLocalService;
 import com.trollingcont.servicebuilder.service.ProductTypeLocalService;
 import org.osgi.service.component.annotations.Component;
@@ -54,13 +53,15 @@ public class ProductsPortlet extends MVCPortlet {
 				Product.class.getName(), request
 		);
 
-		String name = ParamUtil.getString(request, "productName");
-		String productTypeId = ParamUtil.getString(request, "productTypeId");
+		String name = ParamUtil.getString(request, "name");
+		String productTypeId = ParamUtil.getString(request, "typeId");
 		String amount = ParamUtil.getString(request, "amount");
 		String cost = ParamUtil.getString(request, "cost");
 		boolean present = ParamUtil.getBoolean(request, "present");
 		boolean archived = ParamUtil.getBoolean(request, "archived");
 		String description = ParamUtil.getString(request, "description");
+
+		boolean isSuccessful = false;
 
 		try {
 			long productTypeIdLong = Long.parseUnsignedLong(productTypeId);
@@ -79,6 +80,8 @@ public class ProductsPortlet extends MVCPortlet {
 			);
 
 			SessionMessages.add(request, "productAdded");
+
+			isSuccessful = true;
 
 			PortalUtil.copyRequestParameters(request, response);
 
@@ -116,16 +119,123 @@ public class ProductsPortlet extends MVCPortlet {
 		catch (PortalException pe) {
 			SessionErrors.add(request, "errorAddingProduct");
 		}
+
+		if (!isSuccessful) {
+			PortalUtil.copyRequestParameters(request, response);
+
+			response.setRenderParameter(
+					"mvcPath", "/add_product.jsp"
+			);
+		}
 	}
 
 	public void editProduct(ActionRequest request, ActionResponse response)
 			throws PortalException {
 
+		String id = ParamUtil.getString(request, "id");
+		String name = ParamUtil.getString(request, "newName");
+		String typeId = ParamUtil.getString(request, "newTypeId");
+		String cost = ParamUtil.getString(request, "newCost");
+		String amount = ParamUtil.getString(request, "newAmount");
+		boolean present = ParamUtil.getBoolean(request, "newPresent");
+		boolean archived = ParamUtil.getBoolean(request, "newArchived");
+		String description = ParamUtil.getString(request, "newDescription");
+
+		boolean isSuccessful = false;
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				Product.class.getName(), request
+		);
+
+		try {
+
+			long idLong = Long.parseUnsignedLong(id);
+			long typeIdLong = Long.parseUnsignedLong(typeId);
+			long costLong = (long)(Float.parseFloat(cost) * 100);
+			long amountLong = Long.parseUnsignedLong(amount);
+
+			Product product = _productLocalService.getProduct(idLong);
+			_productTypeLocalService.getProductType(typeIdLong);
+
+			product.setName(name);
+			product.setProductTypeId(typeIdLong);
+			product.setCost(costLong);
+			product.setAmount(amountLong);
+			product.setPresent(present);
+			product.setArchived(archived);
+			product.setDescription(description);
+
+			_productLocalService.updateProduct(product, serviceContext);
+
+			SessionMessages.add(request, "productUpdated");
+
+			isSuccessful = true;
+
+			PortalUtil.copyRequestParameters(request, response);
+
+			response.setRenderParameter(
+					"mvcPath", "/view.jsp"
+			);
+		}
+		catch (NumberFormatException nfe) {
+			SessionErrors.add(request, "invalidNumbers");
+		}
+		catch (ProductException pe) {
+			switch (pe.errorCode()) {
+				case NAME_EMPTY:
+					SessionErrors.add(request, "nameEmpty");
+					break;
+				case INVALID_COST:
+					SessionErrors.add(request, "invalidCost");
+					break;
+				case NAME_TOO_LONG:
+					SessionErrors.add(request, "nameTooLong");
+					break;
+				case INVALID_AMOUNT:
+					SessionErrors.add(request, "invalidAmount");
+					break;
+				case DESCRIPTION_EMPTY:
+					SessionErrors.add(request, "descriptionEmpty");
+					break;
+				case DESCRIPTION_TOO_LONG:
+					SessionErrors.add(request, "descriptionTooLong");
+			}
+		}
+		catch (NoSuchProductTypeException nspte) {
+			SessionErrors.add(request, "productTypeIdNotFound");
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(request, "errorAddingProduct");
+		}
+
+		if (!isSuccessful) {
+			PortalUtil.copyRequestParameters(request, response);
+
+			response.setRenderParameter(
+					"mvcPath", "/edit_product.jsp"
+			);
+		}
 	}
 
 	public void deleteProduct(ActionRequest request, ActionResponse response)
 			throws PortalException {
 
+		String strId = ParamUtil.getString(request, "productIdToBeDeleted");
+
+		try {
+			_productLocalService.deleteProduct(Long.parseUnsignedLong(strId));
+
+			SessionMessages.add(request, "productDeleted");
+		}
+		catch (NumberFormatException nfe) {
+			SessionErrors.add(request, "invalidProductId");
+		}
+		catch (NoSuchProductException nspe) {
+			SessionErrors.add(request, "productIdNotFound");
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(request, "errorDeletingProduct");
+		}
 	}
 
 	@Reference(unbind = "-")

@@ -123,7 +123,7 @@ public class ProductLocalServiceImpl extends ProductLocalServiceBaseImpl {
 			throw new ProductException(ProductException.ErrorCode.INVALID_COST);
 		}
 
-		if (amount < 0) {
+		if (amount <= 0) {
 			throw new ProductException(ProductException.ErrorCode.INVALID_AMOUNT);
 		}
 
