@@ -12,6 +12,7 @@
     <module>ServiceBuilder</module>
     <module>ProductTypesPortlet</module>
     <module>ProductsPortlet</module>
+    <module>PostsPortlet</module>
   </modules>
   <properties>
     <liferay.repository.url>https://repository-cdn.liferay.com/nexus/content/groups/public/</liferay.repository.url>
