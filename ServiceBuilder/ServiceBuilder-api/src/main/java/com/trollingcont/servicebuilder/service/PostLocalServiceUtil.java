@@ -59,6 +59,14 @@ public class PostLocalServiceUtil {
 		return getService().addPost(post);
 	}
 
+	public static Post addPost(
+			String name,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().addPost(name, serviceContext);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -277,6 +285,14 @@ public class PostLocalServiceUtil {
 	 */
 	public static Post updatePost(Post post) {
 		return getService().updatePost(post);
+	}
+
+	public static Post updatePost(
+			Post post,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().updatePost(post, serviceContext);
 	}
 
 	public static PostLocalService getService() {

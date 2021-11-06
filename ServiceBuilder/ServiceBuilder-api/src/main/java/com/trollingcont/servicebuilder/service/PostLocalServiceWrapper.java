@@ -47,6 +47,15 @@ public class PostLocalServiceWrapper
 		return _postLocalService.addPost(post);
 	}
 
+	@Override
+	public com.trollingcont.servicebuilder.model.Post addPost(
+			String name,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _postLocalService.addPost(name, serviceContext);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -301,6 +310,15 @@ public class PostLocalServiceWrapper
 		com.trollingcont.servicebuilder.model.Post post) {
 
 		return _postLocalService.updatePost(post);
+	}
+
+	@Override
+	public com.trollingcont.servicebuilder.model.Post updatePost(
+			com.trollingcont.servicebuilder.model.Post post,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _postLocalService.updatePost(post, serviceContext);
 	}
 
 	@Override

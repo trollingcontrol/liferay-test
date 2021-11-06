@@ -16,6 +16,10 @@ package com.trollingcont.servicebuilder.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.trollingcont.servicebuilder.exception.PostException;
+import com.trollingcont.servicebuilder.model.Post;
 import com.trollingcont.servicebuilder.service.base.PostLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
@@ -44,4 +48,51 @@ public class PostLocalServiceImpl extends PostLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.trollingcont.servicebuilder.service.PostLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.trollingcont.servicebuilder.service.PostLocalServiceUtil</code>.
 	 */
+
+	private final int MAX_POST_LENGTH = 100;
+
+	public Post addPost(
+			String name,
+			ServiceContext serviceContext
+	) throws PortalException {
+
+		validate(name);
+
+		long entryId = counterLocalService.increment();
+
+		Post post = postPersistence.create(entryId);
+
+		post.setUuid(serviceContext.getUuid());
+		post.setName(name);
+		post.setExpandoBridgeAttributes(serviceContext);
+
+		postPersistence.update(post);
+
+		return post;
+	}
+
+	public Post updatePost(
+			Post post,
+			ServiceContext serviceContext
+	) throws PortalException {
+
+		validate(post.getName());
+
+		post.setExpandoBridgeAttributes(serviceContext);
+
+		postPersistence.update(post);
+
+		return post;
+	}
+
+	protected void validate(String name) throws PostException {
+
+		if (name == null || name.isBlank()) {
+			throw new PostException(PostException.ErrorCode.NAME_EMPTY);
+		}
+
+		if (name.length() > MAX_POST_LENGTH) {
+			throw new PostException(PostException.ErrorCode.NAME_TOO_LONG);
+		}
+	}
 }
