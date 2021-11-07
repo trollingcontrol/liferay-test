@@ -1,39 +1,30 @@
 package com.trollingcont.employeesportlet.portlet;
 
-import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
-import com.liferay.portal.kernel.dao.search.ResultRow;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.trollingcont.employeesportlet.constants.EmployeesPortletKeys;
-
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.Portlet;
-
 import com.trollingcont.servicebuilder.exception.EmployeeException;
 import com.trollingcont.servicebuilder.exception.NoSuchEmployeeException;
 import com.trollingcont.servicebuilder.exception.NoSuchPostException;
 import com.trollingcont.servicebuilder.model.Employee;
-import com.trollingcont.servicebuilder.model.Product;
-import com.trollingcont.servicebuilder.service.*;
+import com.trollingcont.servicebuilder.service.EmployeeLocalService;
+import com.trollingcont.servicebuilder.service.PostLocalService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import java.text.DateFormat;
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.Portlet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
