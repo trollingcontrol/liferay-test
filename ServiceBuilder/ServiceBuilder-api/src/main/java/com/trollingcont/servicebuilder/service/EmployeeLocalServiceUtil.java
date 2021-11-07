@@ -59,6 +59,17 @@ public class EmployeeLocalServiceUtil {
 		return getService().addEmployee(employee);
 	}
 
+	public static Employee addEmployee(
+			String firstName, String lastName, String middleName,
+			java.util.Date birthDate, long postId, boolean sex,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().addEmployee(
+			firstName, lastName, middleName, birthDate, postId, sex,
+			serviceContext);
+	}
+
 	/**
 	 * Creates a new employee with the primary key. Does not add the employee to the database.
 	 *
@@ -279,6 +290,14 @@ public class EmployeeLocalServiceUtil {
 	 */
 	public static Employee updateEmployee(Employee employee) {
 		return getService().updateEmployee(employee);
+	}
+
+	public static Employee updateEmployee(
+			Employee employee,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().updateEmployee(employee, serviceContext);
 	}
 
 	public static EmployeeLocalService getService() {

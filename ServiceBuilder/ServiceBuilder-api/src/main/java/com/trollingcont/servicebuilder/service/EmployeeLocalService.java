@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -34,6 +35,7 @@ import com.trollingcont.servicebuilder.model.Employee;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -74,6 +76,12 @@ public interface EmployeeLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Employee addEmployee(Employee employee);
+
+	public Employee addEmployee(
+			String firstName, String lastName, String middleName,
+			Date birthDate, long postId, boolean sex,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Creates a new employee with the primary key. Does not add the employee to the database.
@@ -258,5 +266,9 @@ public interface EmployeeLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Employee updateEmployee(Employee employee);
+
+	public Employee updateEmployee(
+			Employee employee, ServiceContext serviceContext)
+		throws PortalException;
 
 }

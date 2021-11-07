@@ -49,6 +49,18 @@ public class EmployeeLocalServiceWrapper
 		return _employeeLocalService.addEmployee(employee);
 	}
 
+	@Override
+	public com.trollingcont.servicebuilder.model.Employee addEmployee(
+			String firstName, String lastName, String middleName,
+			java.util.Date birthDate, long postId, boolean sex,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _employeeLocalService.addEmployee(
+			firstName, lastName, middleName, birthDate, postId, sex,
+			serviceContext);
+	}
+
 	/**
 	 * Creates a new employee with the primary key. Does not add the employee to the database.
 	 *
@@ -310,6 +322,15 @@ public class EmployeeLocalServiceWrapper
 		com.trollingcont.servicebuilder.model.Employee employee) {
 
 		return _employeeLocalService.updateEmployee(employee);
+	}
+
+	@Override
+	public com.trollingcont.servicebuilder.model.Employee updateEmployee(
+			com.trollingcont.servicebuilder.model.Employee employee,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _employeeLocalService.updateEmployee(employee, serviceContext);
 	}
 
 	@Override
