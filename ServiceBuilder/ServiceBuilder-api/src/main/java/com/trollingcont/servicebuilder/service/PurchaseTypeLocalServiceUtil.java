@@ -59,6 +59,14 @@ public class PurchaseTypeLocalServiceUtil {
 		return getService().addPurchaseType(purchaseType);
 	}
 
+	public static PurchaseType addPurchaseType(
+			String name,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().addPurchaseType(name, serviceContext);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -281,6 +289,14 @@ public class PurchaseTypeLocalServiceUtil {
 	 */
 	public static PurchaseType updatePurchaseType(PurchaseType purchaseType) {
 		return getService().updatePurchaseType(purchaseType);
+	}
+
+	public static PurchaseType updatePurchaseType(
+			PurchaseType purchaseType,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().updatePurchaseType(purchaseType, serviceContext);
 	}
 
 	public static PurchaseTypeLocalService getService() {

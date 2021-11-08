@@ -16,6 +16,10 @@ package com.trollingcont.servicebuilder.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.trollingcont.servicebuilder.exception.PurchaseTypeException;
+import com.trollingcont.servicebuilder.model.PurchaseType;
 import com.trollingcont.servicebuilder.service.base.PurchaseTypeLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
@@ -45,4 +49,53 @@ public class PurchaseTypeLocalServiceImpl
 	 *
 	 * Never reference this class directly. Use <code>com.trollingcont.servicebuilder.service.PurchaseTypeLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.trollingcont.servicebuilder.service.PurchaseTypeLocalServiceUtil</code>.
 	 */
+
+	private final int MAX_NAME_LENGTH = 100;
+
+	public PurchaseType addPurchaseType(
+			String name,
+			ServiceContext serviceContext
+	) throws PortalException {
+
+		validate(name);
+
+		long entryId = counterLocalService.increment();
+
+		PurchaseType purchaseType = purchaseTypePersistence.create(entryId);
+
+		purchaseType.setUuid(serviceContext.getUuid());
+		purchaseType.setName(name);
+		purchaseType.setExpandoBridgeAttributes(serviceContext);
+
+		purchaseTypePersistence.update(purchaseType);
+
+		return purchaseType;
+	}
+
+	public PurchaseType updatePurchaseType(
+			PurchaseType purchaseType,
+			ServiceContext serviceContext
+	) throws PortalException {
+
+		validate(purchaseType.getName());
+
+		purchaseType.setExpandoBridgeAttributes(serviceContext);
+
+		purchaseTypePersistence.update(purchaseType);
+
+		return purchaseType;
+	}
+
+	protected void validate(String name)
+			throws PurchaseTypeException {
+
+		if (name == null || name.isBlank()) {
+			throw new PurchaseTypeException(PurchaseTypeException.ErrorCode.NAME_EMPTY);
+		}
+
+		if (name.length() > MAX_NAME_LENGTH) {
+			throw new PurchaseTypeException(PurchaseTypeException.ErrorCode.NAME_TOO_LONG);
+		}
+
+	}
 }

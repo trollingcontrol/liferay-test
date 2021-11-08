@@ -1,5 +1,7 @@
 package com.trollingcont.purchasetypesportlet.portlet;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.trollingcont.purchasetypesportlet.constants.PurchaseTypesPortletKeys;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
@@ -31,6 +33,9 @@ import org.osgi.service.component.annotations.Component;
 public class PurchaseTypesPortlet extends MVCPortlet {
 
 	public void addPurchaseType(ActionRequest request, ActionResponse response) {
+
+		String name = ParamUtil.getString(request, "name");
+
 
 	}
 

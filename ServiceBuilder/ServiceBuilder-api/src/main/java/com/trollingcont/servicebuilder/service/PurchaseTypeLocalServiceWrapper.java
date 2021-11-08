@@ -50,6 +50,15 @@ public class PurchaseTypeLocalServiceWrapper
 		return _purchaseTypeLocalService.addPurchaseType(purchaseType);
 	}
 
+	@Override
+	public com.trollingcont.servicebuilder.model.PurchaseType addPurchaseType(
+			String name,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _purchaseTypeLocalService.addPurchaseType(name, serviceContext);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -313,6 +322,17 @@ public class PurchaseTypeLocalServiceWrapper
 			com.trollingcont.servicebuilder.model.PurchaseType purchaseType) {
 
 		return _purchaseTypeLocalService.updatePurchaseType(purchaseType);
+	}
+
+	@Override
+	public com.trollingcont.servicebuilder.model.PurchaseType
+			updatePurchaseType(
+				com.trollingcont.servicebuilder.model.PurchaseType purchaseType,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _purchaseTypeLocalService.updatePurchaseType(
+			purchaseType, serviceContext);
 	}
 
 	@Override
