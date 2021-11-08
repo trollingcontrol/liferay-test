@@ -76,6 +76,7 @@
 				value='<%= String.format("%s (%d)", purchaseTypeName, purchase.getPurchaseTypeId()) %>'
 				name="Purchase type (ID)"
 		/>
+		<liferay-ui:search-container-column-jsp path="/purchase_actions.jsp" />
 
 	</liferay-ui:search-container-row>
 

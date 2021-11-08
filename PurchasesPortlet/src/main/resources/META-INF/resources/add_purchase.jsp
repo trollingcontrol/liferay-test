@@ -13,15 +13,13 @@
         <aui:input name="purchaseTypeId" />
     </aui:fieldset>
 
+    <liferay-ui:error key="productIsMissing" message="product-is-missing" />
+    <liferay-ui:error key="accessDenied" message="access-denied" />
     <liferay-ui:error key="invalidNumbers" message="invalid-numbers" />
-    <liferay-ui:error key="nameEmpty" message="name-empty" />
-    <liferay-ui:error key="invalidCost" message="invalid-cost" />
-    <liferay-ui:error key="nameTooLong" message="name-too-long" />
-    <liferay-ui:error key="invalidAmount" message="invalid-amount" />
-    <liferay-ui:error key="descriptionEmpty" message="description-empty" />
-    <liferay-ui:error key="descriptionTooLong" message="description-too-long" />
-    <liferay-ui:error key="productTypeIdNotFound" message="product-type-id-not-found" />
-    <liferay-ui:error key="errorAddingProduct" message="error-adding-product" />
+    <liferay-ui:error key="productNotFound" message="product-not-found" />
+    <liferay-ui:error key="employeeNotFound" message="employee-not-found" />
+    <liferay-ui:error key="purchaseTypeNotFound" message="purchase-type-not-found" />
+    <liferay-ui:error key="errorAddingPurchase" message="error-adding-purchase" />
 
     <aui:button-row>
         <aui:button type="submit" />

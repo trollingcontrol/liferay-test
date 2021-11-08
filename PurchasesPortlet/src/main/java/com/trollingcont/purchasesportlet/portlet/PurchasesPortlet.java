@@ -73,7 +73,7 @@ public class PurchasesPortlet extends MVCPortlet {
 
 			EmployeeLocalServiceUtil.getEmployee(employeeId);
 
-			if (!EmployeeRightLocalServiceUtil.hasEmployeeRight(employeeId, productId)) {
+			if (!EmployeeRightLocalServiceUtil.hasEmployeeRight(employeeId, product.getProductTypeId())) {
 				throw new IllegalStateException("accessDenied");
 			}
 
