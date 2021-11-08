@@ -89,6 +89,10 @@
 
 		<column name="productTypeId" type="long" />
 
+		<finder name="EmployeeRightsList" return-type="Collection">
+			<finder-column name="employeeId" />
+		</finder>
+
 	</entity>
 
 	<entity local-service="true" name="Post" remote-service="true" uuid="true">
@@ -106,7 +110,7 @@
 		<column name="name" type="String" />
 
 		<finder name="ProductName" return-type="Collection">
-			<finder-column name="name"></finder-column>
+			<finder-column name="name" />
 		</finder>
 
 	</entity>

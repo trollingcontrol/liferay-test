@@ -143,6 +143,13 @@ public class EmployeeRightPersistenceTest {
 	}
 
 	@Test
+	public void testCountByEmployeeRightsList() throws Exception {
+		_persistence.countByEmployeeRightsList(RandomTestUtil.nextLong());
+
+		_persistence.countByEmployeeRightsList(0L);
+	}
+
+	@Test
 	public void testFindByPrimaryKeyExisting() throws Exception {
 		EmployeeRight newEmployeeRight = addEmployeeRight();
 

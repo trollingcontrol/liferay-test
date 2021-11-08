@@ -4,6 +4,8 @@ create index IX_2B089CD5 on LS_ElectronicsType (uuid_[$COLUMN_LENGTH:75$]);
 
 create index IX_B26EB768 on LS_Employee (uuid_[$COLUMN_LENGTH:75$]);
 
+create index IX_DC692819 on LS_EmployeeRight (employeeId);
+
 create index IX_1C4EE9B6 on LS_Post (uuid_[$COLUMN_LENGTH:75$]);
 
 create index IX_DD0AC6F7 on LS_Product (uuid_[$COLUMN_LENGTH:75$]);

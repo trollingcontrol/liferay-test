@@ -16,6 +16,7 @@ import com.trollingcont.servicebuilder.exception.NoSuchEmployeeException;
 import com.trollingcont.servicebuilder.exception.NoSuchPostException;
 import com.trollingcont.servicebuilder.model.Employee;
 import com.trollingcont.servicebuilder.service.EmployeeLocalService;
+import com.trollingcont.servicebuilder.service.EmployeeRightLocalService;
 import com.trollingcont.servicebuilder.service.PostLocalService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -222,6 +223,12 @@ public class EmployeesPortlet extends MVCPortlet {
 		_postLocalService = postLocalService;
 	}
 
+	@Reference(unbind = "-")
+	protected void setEmployeeRightLocalService(EmployeeRightLocalService employeeRightLocalService) {
+		_employeeRightLocalService = employeeRightLocalService;
+	}
+
+	private EmployeeRightLocalService _employeeRightLocalService;
 	private EmployeeLocalService _employeeLocalService;
 	private PostLocalService _postLocalService;
 }

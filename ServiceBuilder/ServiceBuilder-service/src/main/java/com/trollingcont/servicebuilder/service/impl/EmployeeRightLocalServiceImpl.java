@@ -16,9 +16,14 @@ package com.trollingcont.servicebuilder.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.trollingcont.servicebuilder.model.EmployeeRight;
 import com.trollingcont.servicebuilder.service.base.EmployeeRightLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+
+import java.util.List;
 
 /**
  * The implementation of the employee right local service.
@@ -45,4 +50,31 @@ public class EmployeeRightLocalServiceImpl
 	 *
 	 * Never reference this class directly. Use <code>com.trollingcont.servicebuilder.service.EmployeeRightLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.trollingcont.servicebuilder.service.EmployeeRightLocalServiceUtil</code>.
 	 */
+
+	public EmployeeRight addEmployeeRight(
+			long employeeId,
+			long productTypeId,
+			ServiceContext serviceContext
+	) throws PortalException {
+
+		long entryId = counterLocalService.increment();
+
+		EmployeeRight employeeRight = employeeRightPersistence.create(entryId);
+
+		employeeRight.setEmployeeId(employeeId);
+		employeeRight.setProductTypeId(productTypeId);
+		employeeRight.setExpandoBridgeAttributes(serviceContext);
+
+		employeeRightPersistence.update(employeeRight);
+
+		return employeeRight;
+	}
+
+	public List<EmployeeRight> getEmployeeRightsList(
+			long employeeId
+	) throws PortalException {
+
+		return employeeRightPersistence.findByEmployeeRightsList(employeeId);
+
+	}
 }

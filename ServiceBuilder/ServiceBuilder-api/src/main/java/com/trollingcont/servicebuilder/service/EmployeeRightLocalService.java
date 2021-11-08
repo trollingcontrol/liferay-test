@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -74,6 +75,10 @@ public interface EmployeeRightLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public EmployeeRight addEmployeeRight(EmployeeRight employeeRight);
+
+	public EmployeeRight addEmployeeRight(
+			long employeeId, long productTypeId, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Creates a new employee right with the primary key. Does not add the employee right to the database.
@@ -228,6 +233,10 @@ public interface EmployeeRightLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getEmployeeRightsCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<EmployeeRight> getEmployeeRightsList(long employeeId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();

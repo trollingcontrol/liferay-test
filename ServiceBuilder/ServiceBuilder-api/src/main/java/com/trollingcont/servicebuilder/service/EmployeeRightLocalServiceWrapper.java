@@ -50,6 +50,16 @@ public class EmployeeRightLocalServiceWrapper
 		return _employeeRightLocalService.addEmployeeRight(employeeRight);
 	}
 
+	@Override
+	public com.trollingcont.servicebuilder.model.EmployeeRight addEmployeeRight(
+			long employeeId, long productTypeId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _employeeRightLocalService.addEmployeeRight(
+			employeeId, productTypeId, serviceContext);
+	}
+
 	/**
 	 * Creates a new employee right with the primary key. Does not add the employee right to the database.
 	 *
@@ -268,6 +278,14 @@ public class EmployeeRightLocalServiceWrapper
 	@Override
 	public int getEmployeeRightsCount() {
 		return _employeeRightLocalService.getEmployeeRightsCount();
+	}
+
+	@Override
+	public java.util.List<com.trollingcont.servicebuilder.model.EmployeeRight>
+			getEmployeeRightsList(long employeeId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _employeeRightLocalService.getEmployeeRightsList(employeeId);
 	}
 
 	@Override

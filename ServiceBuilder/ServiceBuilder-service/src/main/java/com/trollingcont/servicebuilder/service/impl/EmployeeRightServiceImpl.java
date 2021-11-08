@@ -16,9 +16,14 @@ package com.trollingcont.servicebuilder.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.trollingcont.servicebuilder.model.EmployeeRight;
 import com.trollingcont.servicebuilder.service.base.EmployeeRightServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+
+import java.util.List;
 
 /**
  * The implementation of the employee right remote service.

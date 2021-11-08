@@ -59,6 +59,15 @@ public class EmployeeRightLocalServiceUtil {
 		return getService().addEmployeeRight(employeeRight);
 	}
 
+	public static EmployeeRight addEmployeeRight(
+			long employeeId, long productTypeId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().addEmployeeRight(
+			employeeId, productTypeId, serviceContext);
+	}
+
 	/**
 	 * Creates a new employee right with the primary key. Does not add the employee right to the database.
 	 *
@@ -244,6 +253,12 @@ public class EmployeeRightLocalServiceUtil {
 	 */
 	public static int getEmployeeRightsCount() {
 		return getService().getEmployeeRightsCount();
+	}
+
+	public static List<EmployeeRight> getEmployeeRightsList(long employeeId)
+		throws PortalException {
+
+		return getService().getEmployeeRightsList(employeeId);
 	}
 
 	public static
