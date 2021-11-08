@@ -44,6 +44,15 @@ public class PurchaseLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.trollingcont.servicebuilder.service.impl.PurchaseLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static Purchase addPurchase(
+		long productId, long employeeId, long purchaseTypeId,
+		java.util.Date purchaseDate,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return getService().addPurchase(
+			productId, employeeId, purchaseTypeId, purchaseDate,
+			serviceContext);
+	}
 
 	/**
 	 * Adds the purchase to the database. Also notifies the appropriate model listeners.

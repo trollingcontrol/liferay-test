@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -34,6 +35,7 @@ import com.trollingcont.servicebuilder.model.Purchase;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -61,6 +63,9 @@ public interface PurchaseLocalService
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>com.trollingcont.servicebuilder.service.impl.PurchaseLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the purchase local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link PurchaseLocalServiceUtil} if injection and service tracking are not available.
 	 */
+	public Purchase addPurchase(
+		long productId, long employeeId, long purchaseTypeId, Date purchaseDate,
+		ServiceContext serviceContext);
 
 	/**
 	 * Adds the purchase to the database. Also notifies the appropriate model listeners.

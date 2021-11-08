@@ -16,9 +16,14 @@ package com.trollingcont.servicebuilder.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.trollingcont.servicebuilder.model.Purchase;
 import com.trollingcont.servicebuilder.service.base.PurchaseLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+
+import java.util.Date;
 
 /**
  * The implementation of the purchase local service.
@@ -44,4 +49,28 @@ public class PurchaseLocalServiceImpl extends PurchaseLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.trollingcont.servicebuilder.service.PurchaseLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.trollingcont.servicebuilder.service.PurchaseLocalServiceUtil</code>.
 	 */
+
+	public Purchase addPurchase(
+			long productId,
+			long employeeId,
+			long purchaseTypeId,
+			Date purchaseDate,
+			ServiceContext serviceContext
+	) {
+
+		long entryId = counterLocalService.increment();
+
+		Purchase purchase = purchasePersistence.create(entryId);
+
+		purchase.setUuid(serviceContext.getUuid());
+		purchase.setProductId(productId);
+		purchase.setEmployeeId(employeeId);
+		purchase.setPurchaseTypeId(purchaseTypeId);
+		purchase.setDatePurchased(purchaseDate);
+		purchase.setExpandoBridgeAttributes(serviceContext);
+
+		purchasePersistence.update(purchase);
+
+		return purchase;
+	}
 }

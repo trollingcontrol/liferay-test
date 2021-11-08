@@ -32,6 +32,17 @@ public class PurchaseLocalServiceWrapper
 		_purchaseLocalService = purchaseLocalService;
 	}
 
+	@Override
+	public com.trollingcont.servicebuilder.model.Purchase addPurchase(
+		long productId, long employeeId, long purchaseTypeId,
+		java.util.Date purchaseDate,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return _purchaseLocalService.addPurchase(
+			productId, employeeId, purchaseTypeId, purchaseDate,
+			serviceContext);
+	}
+
 	/**
 	 * Adds the purchase to the database. Also notifies the appropriate model listeners.
 	 *
