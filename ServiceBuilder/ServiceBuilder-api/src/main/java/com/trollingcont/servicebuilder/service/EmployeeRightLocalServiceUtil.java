@@ -60,9 +60,8 @@ public class EmployeeRightLocalServiceUtil {
 	}
 
 	public static EmployeeRight addEmployeeRight(
-			long employeeId, long productTypeId,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws PortalException {
+		long employeeId, long productTypeId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return getService().addEmployeeRight(
 			employeeId, productTypeId, serviceContext);
@@ -255,9 +254,7 @@ public class EmployeeRightLocalServiceUtil {
 		return getService().getEmployeeRightsCount();
 	}
 
-	public static List<EmployeeRight> getEmployeeRightsList(long employeeId)
-		throws PortalException {
-
+	public static List<EmployeeRight> getEmployeeRightsList(long employeeId) {
 		return getService().getEmployeeRightsList(employeeId);
 	}
 
@@ -284,6 +281,12 @@ public class EmployeeRightLocalServiceUtil {
 		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static boolean hasEmployeeRight(
+		long employeeId, long productTypeId) {
+
+		return getService().hasEmployeeRight(employeeId, productTypeId);
 	}
 
 	/**

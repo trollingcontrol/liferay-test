@@ -50,30 +50,23 @@
 
             StringBuilder rightsList;
 
-            try {
-                List<EmployeeRight> employeeRightList =
-                        EmployeeRightLocalServiceUtil.getEmployeeRightsList(employee.getEmployeeId());
+            List<EmployeeRight> employeeRightList =
+                    EmployeeRightLocalServiceUtil.getEmployeeRightsList(employee.getEmployeeId());
 
-                rightsList = new StringBuilder("<ul>");
+            rightsList = new StringBuilder();
 
-                for (EmployeeRight right : employeeRightList) {
-                    String productTypeName;
+            for (EmployeeRight right : employeeRightList) {
+                String productTypeName;
 
-                    try {
-                        ProductType productType = ProductTypeLocalServiceUtil.getProductType(right.getProductTypeId());
-                        productTypeName = productType.getName();
-                    }
-                    catch (PortalException pe) {
-                        productTypeName = "[Can't find type name]";
-                    }
-
-                    rightsList.append(String.format("<li>%s (%d)</li>", productTypeName, right.getProductTypeId()));
+                try {
+                    ProductType productType = ProductTypeLocalServiceUtil.getProductType(right.getProductTypeId());
+                    productTypeName = productType.getName();
+                }
+                catch (PortalException pe) {
+                    productTypeName = "[Can't find type name]";
                 }
 
-                rightsList.append("</ul>");
-            }
-            catch (PortalException e) {
-                rightsList = new StringBuilder("[Can't get rights list]");
+                rightsList.append(String.format("<p>%s (%d)</p>", productTypeName, right.getProductTypeId()));
             }
         %>
 

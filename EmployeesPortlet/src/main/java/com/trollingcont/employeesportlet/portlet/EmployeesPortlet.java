@@ -46,8 +46,6 @@ import java.util.Date;
 )
 public class EmployeesPortlet extends MVCPortlet {
 
-	Log log = LogFactoryUtil.getLog(EmployeesPortlet.class.getName());
-
 	SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 	public void addEmployee(ActionRequest request, ActionResponse response)
@@ -210,11 +208,20 @@ public class EmployeesPortlet extends MVCPortlet {
 
 	}
 
-	public void deleteRight(ActionRequest request, ActionResponse response) throws PortalException {
+	public void deleteRight(ActionRequest request, ActionResponse response) {
 
 		long rightId = ParamUtil.getLong(request, "employeeRightIdToBeDeleted");
 
-		EmployeeRightLocalServiceUtil.deleteEmployeeRight(rightId);
+		try {
+			EmployeeRightLocalServiceUtil.deleteEmployeeRight(rightId);
+			SessionMessages.add(request, "rightDeleted");
+		}
+		catch (NoSuchEmployeeRightException nsere) {
+			SessionErrors.add(request, "rightNotFound");
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(request, "errorDeletingRight");
+		}
 	}
 
 	public void addRight(ActionRequest request, ActionResponse response) throws PortalException {
@@ -230,6 +237,10 @@ public class EmployeesPortlet extends MVCPortlet {
 		try {
 			long typeId = Long.parseUnsignedLong(ParamUtil.getString(request, "typeId"));
 
+			if (EmployeeRightLocalServiceUtil.hasEmployeeRight(employeeId, typeId)) {
+				throw new IllegalStateException("rightAlreadyExists");
+			}
+
 			_productTypeLocalService.getProductType(typeId);
 
 			_employeeRightLocalService.addEmployeeRight(
@@ -241,6 +252,9 @@ public class EmployeesPortlet extends MVCPortlet {
 			SessionMessages.add(request, "rightAdded");
 
 			isSuccessful = true;
+		}
+		catch (IllegalStateException ise) {
+			SessionErrors.add(request, ise.getMessage());
 		}
 		catch (NumberFormatException nfe) {
 			SessionErrors.add(request, "invalidNumbers");

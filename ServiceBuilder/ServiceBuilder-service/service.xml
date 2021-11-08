@@ -93,6 +93,11 @@
 			<finder-column name="employeeId" />
 		</finder>
 
+		<finder name="EmployeeSingleRight" return-type="Collection">
+			<finder-column name="employeeId" />
+			<finder-column name="productTypeId" />
+		</finder>
+
 	</entity>
 
 	<entity local-service="true" name="Post" remote-service="true" uuid="true">

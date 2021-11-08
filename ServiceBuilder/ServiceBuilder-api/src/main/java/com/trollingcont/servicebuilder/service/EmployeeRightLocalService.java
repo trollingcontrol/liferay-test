@@ -77,8 +77,7 @@ public interface EmployeeRightLocalService
 	public EmployeeRight addEmployeeRight(EmployeeRight employeeRight);
 
 	public EmployeeRight addEmployeeRight(
-			long employeeId, long productTypeId, ServiceContext serviceContext)
-		throws PortalException;
+		long employeeId, long productTypeId, ServiceContext serviceContext);
 
 	/**
 	 * Creates a new employee right with the primary key. Does not add the employee right to the database.
@@ -235,8 +234,7 @@ public interface EmployeeRightLocalService
 	public int getEmployeeRightsCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<EmployeeRight> getEmployeeRightsList(long employeeId)
-		throws PortalException;
+	public List<EmployeeRight> getEmployeeRightsList(long employeeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
@@ -255,6 +253,9 @@ public interface EmployeeRightLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasEmployeeRight(long employeeId, long productTypeId);
 
 	/**
 	 * Updates the employee right in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

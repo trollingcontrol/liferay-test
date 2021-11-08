@@ -590,6 +590,555 @@ public class EmployeeRightPersistenceImpl
 	private static final String _FINDER_COLUMN_EMPLOYEERIGHTSLIST_EMPLOYEEID_2 =
 		"employeeRight.employeeId = ?";
 
+	private FinderPath _finderPathWithPaginationFindByEmployeeSingleRight;
+	private FinderPath _finderPathWithoutPaginationFindByEmployeeSingleRight;
+	private FinderPath _finderPathCountByEmployeeSingleRight;
+
+	/**
+	 * Returns all the employee rights where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @return the matching employee rights
+	 */
+	@Override
+	public List<EmployeeRight> findByEmployeeSingleRight(
+		long employeeId, long productTypeId) {
+
+		return findByEmployeeSingleRight(
+			employeeId, productTypeId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Returns a range of all the employee rights where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeRightModelImpl</code>.
+	 * </p>
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @param start the lower bound of the range of employee rights
+	 * @param end the upper bound of the range of employee rights (not inclusive)
+	 * @return the range of matching employee rights
+	 */
+	@Override
+	public List<EmployeeRight> findByEmployeeSingleRight(
+		long employeeId, long productTypeId, int start, int end) {
+
+		return findByEmployeeSingleRight(
+			employeeId, productTypeId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the employee rights where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeRightModelImpl</code>.
+	 * </p>
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @param start the lower bound of the range of employee rights
+	 * @param end the upper bound of the range of employee rights (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching employee rights
+	 */
+	@Override
+	public List<EmployeeRight> findByEmployeeSingleRight(
+		long employeeId, long productTypeId, int start, int end,
+		OrderByComparator<EmployeeRight> orderByComparator) {
+
+		return findByEmployeeSingleRight(
+			employeeId, productTypeId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the employee rights where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeRightModelImpl</code>.
+	 * </p>
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @param start the lower bound of the range of employee rights
+	 * @param end the upper bound of the range of employee rights (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching employee rights
+	 */
+	@Override
+	public List<EmployeeRight> findByEmployeeSingleRight(
+		long employeeId, long productTypeId, int start, int end,
+		OrderByComparator<EmployeeRight> orderByComparator,
+		boolean useFinderCache) {
+
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+			(orderByComparator == null)) {
+
+			if (useFinderCache) {
+				finderPath =
+					_finderPathWithoutPaginationFindByEmployeeSingleRight;
+				finderArgs = new Object[] {employeeId, productTypeId};
+			}
+		}
+		else if (useFinderCache) {
+			finderPath = _finderPathWithPaginationFindByEmployeeSingleRight;
+			finderArgs = new Object[] {
+				employeeId, productTypeId, start, end, orderByComparator
+			};
+		}
+
+		List<EmployeeRight> list = null;
+
+		if (useFinderCache) {
+			list = (List<EmployeeRight>)finderCache.getResult(
+				finderPath, finderArgs, this);
+
+			if ((list != null) && !list.isEmpty()) {
+				for (EmployeeRight employeeRight : list) {
+					if ((employeeId != employeeRight.getEmployeeId()) ||
+						(productTypeId != employeeRight.getProductTypeId())) {
+
+						list = null;
+
+						break;
+					}
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler sb = null;
+
+			if (orderByComparator != null) {
+				sb = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
+			}
+			else {
+				sb = new StringBundler(4);
+			}
+
+			sb.append(_SQL_SELECT_EMPLOYEERIGHT_WHERE);
+
+			sb.append(_FINDER_COLUMN_EMPLOYEESINGLERIGHT_EMPLOYEEID_2);
+
+			sb.append(_FINDER_COLUMN_EMPLOYEESINGLERIGHT_PRODUCTTYPEID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(
+					sb, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
+			}
+			else {
+				sb.append(EmployeeRightModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = sb.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query query = session.createQuery(sql);
+
+				QueryPos queryPos = QueryPos.getInstance(query);
+
+				queryPos.add(employeeId);
+
+				queryPos.add(productTypeId);
+
+				list = (List<EmployeeRight>)QueryUtil.list(
+					query, getDialect(), start, end);
+
+				cacheResult(list);
+
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
+			}
+			catch (Exception exception) {
+				throw processException(exception);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first employee right in the ordered set where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching employee right
+	 * @throws NoSuchEmployeeRightException if a matching employee right could not be found
+	 */
+	@Override
+	public EmployeeRight findByEmployeeSingleRight_First(
+			long employeeId, long productTypeId,
+			OrderByComparator<EmployeeRight> orderByComparator)
+		throws NoSuchEmployeeRightException {
+
+		EmployeeRight employeeRight = fetchByEmployeeSingleRight_First(
+			employeeId, productTypeId, orderByComparator);
+
+		if (employeeRight != null) {
+			return employeeRight;
+		}
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		sb.append("employeeId=");
+		sb.append(employeeId);
+
+		sb.append(", productTypeId=");
+		sb.append(productTypeId);
+
+		sb.append("}");
+
+		throw new NoSuchEmployeeRightException(sb.toString());
+	}
+
+	/**
+	 * Returns the first employee right in the ordered set where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching employee right, or <code>null</code> if a matching employee right could not be found
+	 */
+	@Override
+	public EmployeeRight fetchByEmployeeSingleRight_First(
+		long employeeId, long productTypeId,
+		OrderByComparator<EmployeeRight> orderByComparator) {
+
+		List<EmployeeRight> list = findByEmployeeSingleRight(
+			employeeId, productTypeId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last employee right in the ordered set where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching employee right
+	 * @throws NoSuchEmployeeRightException if a matching employee right could not be found
+	 */
+	@Override
+	public EmployeeRight findByEmployeeSingleRight_Last(
+			long employeeId, long productTypeId,
+			OrderByComparator<EmployeeRight> orderByComparator)
+		throws NoSuchEmployeeRightException {
+
+		EmployeeRight employeeRight = fetchByEmployeeSingleRight_Last(
+			employeeId, productTypeId, orderByComparator);
+
+		if (employeeRight != null) {
+			return employeeRight;
+		}
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		sb.append("employeeId=");
+		sb.append(employeeId);
+
+		sb.append(", productTypeId=");
+		sb.append(productTypeId);
+
+		sb.append("}");
+
+		throw new NoSuchEmployeeRightException(sb.toString());
+	}
+
+	/**
+	 * Returns the last employee right in the ordered set where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching employee right, or <code>null</code> if a matching employee right could not be found
+	 */
+	@Override
+	public EmployeeRight fetchByEmployeeSingleRight_Last(
+		long employeeId, long productTypeId,
+		OrderByComparator<EmployeeRight> orderByComparator) {
+
+		int count = countByEmployeeSingleRight(employeeId, productTypeId);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<EmployeeRight> list = findByEmployeeSingleRight(
+			employeeId, productTypeId, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the employee rights before and after the current employee right in the ordered set where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * @param rightId the primary key of the current employee right
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next employee right
+	 * @throws NoSuchEmployeeRightException if a employee right with the primary key could not be found
+	 */
+	@Override
+	public EmployeeRight[] findByEmployeeSingleRight_PrevAndNext(
+			long rightId, long employeeId, long productTypeId,
+			OrderByComparator<EmployeeRight> orderByComparator)
+		throws NoSuchEmployeeRightException {
+
+		EmployeeRight employeeRight = findByPrimaryKey(rightId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			EmployeeRight[] array = new EmployeeRightImpl[3];
+
+			array[0] = getByEmployeeSingleRight_PrevAndNext(
+				session, employeeRight, employeeId, productTypeId,
+				orderByComparator, true);
+
+			array[1] = employeeRight;
+
+			array[2] = getByEmployeeSingleRight_PrevAndNext(
+				session, employeeRight, employeeId, productTypeId,
+				orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception exception) {
+			throw processException(exception);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected EmployeeRight getByEmployeeSingleRight_PrevAndNext(
+		Session session, EmployeeRight employeeRight, long employeeId,
+		long productTypeId, OrderByComparator<EmployeeRight> orderByComparator,
+		boolean previous) {
+
+		StringBundler sb = null;
+
+		if (orderByComparator != null) {
+			sb = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			sb = new StringBundler(4);
+		}
+
+		sb.append(_SQL_SELECT_EMPLOYEERIGHT_WHERE);
+
+		sb.append(_FINDER_COLUMN_EMPLOYEESINGLERIGHT_EMPLOYEEID_2);
+
+		sb.append(_FINDER_COLUMN_EMPLOYEESINGLERIGHT_PRODUCTTYPEID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				sb.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				sb.append(_ORDER_BY_ENTITY_ALIAS);
+				sb.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						sb.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(WHERE_GREATER_THAN);
+					}
+					else {
+						sb.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			sb.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				sb.append(_ORDER_BY_ENTITY_ALIAS);
+				sb.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						sb.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(ORDER_BY_ASC);
+					}
+					else {
+						sb.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			sb.append(EmployeeRightModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = sb.toString();
+
+		Query query = session.createQuery(sql);
+
+		query.setFirstResult(0);
+		query.setMaxResults(2);
+
+		QueryPos queryPos = QueryPos.getInstance(query);
+
+		queryPos.add(employeeId);
+
+		queryPos.add(productTypeId);
+
+		if (orderByComparator != null) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						employeeRight)) {
+
+				queryPos.add(orderByConditionValue);
+			}
+		}
+
+		List<EmployeeRight> list = query.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the employee rights where employeeId = &#63; and productTypeId = &#63; from the database.
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 */
+	@Override
+	public void removeByEmployeeSingleRight(
+		long employeeId, long productTypeId) {
+
+		for (EmployeeRight employeeRight :
+				findByEmployeeSingleRight(
+					employeeId, productTypeId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
+			remove(employeeRight);
+		}
+	}
+
+	/**
+	 * Returns the number of employee rights where employeeId = &#63; and productTypeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param productTypeId the product type ID
+	 * @return the number of matching employee rights
+	 */
+	@Override
+	public int countByEmployeeSingleRight(long employeeId, long productTypeId) {
+		FinderPath finderPath = _finderPathCountByEmployeeSingleRight;
+
+		Object[] finderArgs = new Object[] {employeeId, productTypeId};
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler sb = new StringBundler(3);
+
+			sb.append(_SQL_COUNT_EMPLOYEERIGHT_WHERE);
+
+			sb.append(_FINDER_COLUMN_EMPLOYEESINGLERIGHT_EMPLOYEEID_2);
+
+			sb.append(_FINDER_COLUMN_EMPLOYEESINGLERIGHT_PRODUCTTYPEID_2);
+
+			String sql = sb.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query query = session.createQuery(sql);
+
+				QueryPos queryPos = QueryPos.getInstance(query);
+
+				queryPos.add(employeeId);
+
+				queryPos.add(productTypeId);
+
+				count = (Long)query.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception exception) {
+				throw processException(exception);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String
+		_FINDER_COLUMN_EMPLOYEESINGLERIGHT_EMPLOYEEID_2 =
+			"employeeRight.employeeId = ? AND ";
+
+	private static final String
+		_FINDER_COLUMN_EMPLOYEESINGLERIGHT_PRODUCTTYPEID_2 =
+			"employeeRight.productTypeId = ?";
+
 	public EmployeeRightPersistenceImpl() {
 		setModelClass(EmployeeRight.class);
 
@@ -1120,6 +1669,28 @@ public class EmployeeRightPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"countByEmployeeRightsList", new String[] {Long.class.getName()},
 			new String[] {"employeeId"}, false);
+
+		_finderPathWithPaginationFindByEmployeeSingleRight = _createFinderPath(
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByEmployeeSingleRight",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			},
+			new String[] {"employeeId", "productTypeId"}, true);
+
+		_finderPathWithoutPaginationFindByEmployeeSingleRight =
+			_createFinderPath(
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"findByEmployeeSingleRight",
+				new String[] {Long.class.getName(), Long.class.getName()},
+				new String[] {"employeeId", "productTypeId"}, true);
+
+		_finderPathCountByEmployeeSingleRight = _createFinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByEmployeeSingleRight",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			new String[] {"employeeId", "productTypeId"}, false);
 	}
 
 	@Deactivate

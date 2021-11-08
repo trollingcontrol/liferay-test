@@ -57,3 +57,8 @@
     <liferay-ui:search-iterator />
 
 </liferay-ui:search-container>
+
+<liferay-ui:success key="rightAdded" message="right-added" />
+<liferay-ui:success key="rightDeleted" message="right-deleted" />
+<liferay-ui:error key="rightNotFound" message="right-not-found" />
+<liferay-ui:error key="errorDeletingRight" message="error-deleting-right" />

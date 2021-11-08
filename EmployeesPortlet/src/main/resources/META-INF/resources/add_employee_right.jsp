@@ -20,10 +20,13 @@
         <aui:input name="typeId" />
     </aui:fieldset>
 
-    <liferay-ui:error key="nameTooLong" message="name-too-long" />
+    <liferay-ui:error key="rightAlreadyExists" message="right-already-exists" />
+    <liferay-ui:error key="invalidNumbers" message="invalid-numbers" />
+    <liferay-ui:error key="productTypeNotFound" message="product-type-not-found" />
+    <liferay-ui:error key="errorAddingRight" message="error-adding-right" />
 
     <aui:button-row>
-        <aui:button value="add-button" type="submit" />
+        <aui:button type="submit" />
         <aui:button type="cancel" onClick="<%= viewURL %>" />
     </aui:button-row>
 </aui:form>

@@ -55,7 +55,7 @@ public class EmployeeRightLocalServiceImpl
 			long employeeId,
 			long productTypeId,
 			ServiceContext serviceContext
-	) throws PortalException {
+	) {
 
 		long entryId = counterLocalService.increment();
 
@@ -72,9 +72,17 @@ public class EmployeeRightLocalServiceImpl
 
 	public List<EmployeeRight> getEmployeeRightsList(
 			long employeeId
-	) throws PortalException {
+	) {
 
 		return employeeRightPersistence.findByEmployeeRightsList(employeeId);
 
+	}
+
+	public boolean hasEmployeeRight(
+			long employeeId,
+			long productTypeId
+	) {
+
+		return employeeRightPersistence.countByEmployeeSingleRight(employeeId, productTypeId) != 0;
 	}
 }

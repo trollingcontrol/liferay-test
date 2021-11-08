@@ -52,9 +52,8 @@ public class EmployeeRightLocalServiceWrapper
 
 	@Override
 	public com.trollingcont.servicebuilder.model.EmployeeRight addEmployeeRight(
-			long employeeId, long productTypeId,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		long employeeId, long productTypeId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return _employeeRightLocalService.addEmployeeRight(
 			employeeId, productTypeId, serviceContext);
@@ -282,8 +281,7 @@ public class EmployeeRightLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.trollingcont.servicebuilder.model.EmployeeRight>
-			getEmployeeRightsList(long employeeId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		getEmployeeRightsList(long employeeId) {
 
 		return _employeeRightLocalService.getEmployeeRightsList(employeeId);
 	}
@@ -314,6 +312,12 @@ public class EmployeeRightLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _employeeRightLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public boolean hasEmployeeRight(long employeeId, long productTypeId) {
+		return _employeeRightLocalService.hasEmployeeRight(
+			employeeId, productTypeId);
 	}
 
 	/**

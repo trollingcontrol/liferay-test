@@ -150,6 +150,14 @@ public class EmployeeRightPersistenceTest {
 	}
 
 	@Test
+	public void testCountByEmployeeSingleRight() throws Exception {
+		_persistence.countByEmployeeSingleRight(
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
+
+		_persistence.countByEmployeeSingleRight(0L, 0L);
+	}
+
+	@Test
 	public void testFindByPrimaryKeyExisting() throws Exception {
 		EmployeeRight newEmployeeRight = addEmployeeRight();
 
