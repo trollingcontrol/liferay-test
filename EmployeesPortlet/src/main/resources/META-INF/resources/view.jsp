@@ -54,7 +54,7 @@
                 List<EmployeeRight> employeeRightList =
                         EmployeeRightLocalServiceUtil.getEmployeeRightsList(employee.getEmployeeId());
 
-                rightsList = new StringBuilder("");
+                rightsList = new StringBuilder("<ul>");
 
                 for (EmployeeRight right : employeeRightList) {
                     String productTypeName;
@@ -67,13 +67,14 @@
                         productTypeName = "[Can't find type name]";
                     }
 
-                    rightsList.append(String.format("%s (%d)\n", productTypeName, right.getProductTypeId()));
+                    rightsList.append(String.format("<li>%s (%d)</li>", productTypeName, right.getProductTypeId()));
                 }
+
+                rightsList.append("</ul>");
             }
             catch (PortalException e) {
                 rightsList = new StringBuilder("[Can't get rights list]");
             }
-
         %>
 
         <liferay-ui:search-container-column-text property="employeeId" name="ID" />

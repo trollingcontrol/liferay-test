@@ -27,10 +27,16 @@
 	<portlet:param name="middleName" value="<%= middleName %>" />
 	<portlet:param name="birthDateStr" value="<%= birthDateStr %>" />
 	<portlet:param name="postId" value="<%= postId %>" />
-	<portlet:param name="sex" value="<%= sex ? "True" : "False" %>" />
+	<portlet:param name="sex" value='<%= sex ? "True" : "False" %>' />
+</portlet:renderURL>
+
+<portlet:renderURL var="editEmployeeRightsURL">
+	<portlet:param name="mvcPath" value="/employee_rights.jsp" />
+	<portlet:param name="id" value="<%= id %>" />
 </portlet:renderURL>
 
 <aui:button-row>
     <aui:button value="Delete" onClick="<%= deleteEmployeeURL %>" />
     <aui:button value="Edit" onClick="<%= editEmployeeURL %>" />
+	<aui:button value="Edit rights" onClick="<%= editEmployeeRightsURL %>" />
 </aui:button-row>

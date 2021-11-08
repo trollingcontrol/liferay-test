@@ -11,13 +11,10 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.trollingcont.employeesportlet.constants.EmployeesPortletKeys;
-import com.trollingcont.servicebuilder.exception.EmployeeException;
-import com.trollingcont.servicebuilder.exception.NoSuchEmployeeException;
-import com.trollingcont.servicebuilder.exception.NoSuchPostException;
+import com.trollingcont.servicebuilder.exception.*;
 import com.trollingcont.servicebuilder.model.Employee;
-import com.trollingcont.servicebuilder.service.EmployeeLocalService;
-import com.trollingcont.servicebuilder.service.EmployeeRightLocalService;
-import com.trollingcont.servicebuilder.service.PostLocalService;
+import com.trollingcont.servicebuilder.model.EmployeeRight;
+import com.trollingcont.servicebuilder.service.*;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -213,6 +210,55 @@ public class EmployeesPortlet extends MVCPortlet {
 
 	}
 
+	public void deleteRight(ActionRequest request, ActionResponse response) throws PortalException {
+
+		long rightId = ParamUtil.getLong(request, "employeeRightIdToBeDeleted");
+
+		EmployeeRightLocalServiceUtil.deleteEmployeeRight(rightId);
+	}
+
+	public void addRight(ActionRequest request, ActionResponse response) throws PortalException {
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				EmployeeRight.class.getName(), request
+		);
+
+		boolean isSuccessful = false;
+
+		long employeeId = ParamUtil.getLong(request, "id");
+
+		try {
+			long typeId = Long.parseUnsignedLong(ParamUtil.getString(request, "typeId"));
+
+			_productTypeLocalService.getProductType(typeId);
+
+			_employeeRightLocalService.addEmployeeRight(
+					employeeId,
+					typeId,
+					serviceContext
+			);
+
+			SessionMessages.add(request, "rightAdded");
+
+			isSuccessful = true;
+		}
+		catch (NumberFormatException nfe) {
+			SessionErrors.add(request, "invalidNumbers");
+		}
+		catch (NoSuchProductTypeException nspte) {
+			SessionErrors.add(request, "productTypeNotFound");
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(request, "errorAddingRight");
+		}
+
+		PortalUtil.copyRequestParameters(request, response);
+
+		response.setRenderParameter(
+				"mvcPath", isSuccessful ? "/employee_rights.jsp" : "/add_employee_right.jsp"
+		);
+	}
+
 	@Reference(unbind = "-")
 	protected void setEmployeeLocalService(EmployeeLocalService employeeLocalService) {
 		_employeeLocalService = employeeLocalService;
@@ -228,6 +274,12 @@ public class EmployeesPortlet extends MVCPortlet {
 		_employeeRightLocalService = employeeRightLocalService;
 	}
 
+	@Reference(unbind = "-")
+	protected void setProductTypeLocalService(ProductTypeLocalService productTypeLocalService) {
+		_productTypeLocalService = productTypeLocalService;
+	}
+
+	private ProductTypeLocalService _productTypeLocalService;
 	private EmployeeRightLocalService _employeeRightLocalService;
 	private EmployeeLocalService _employeeLocalService;
 	private PostLocalService _postLocalService;
