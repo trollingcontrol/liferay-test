@@ -134,9 +134,6 @@ public class EmployeesPortlet extends MVCPortlet {
 		String postId = ParamUtil.getString(request, "newPostId");
 		boolean sexGroup = ParamUtil.getBoolean(request, "newSexGroup");
 
-		String dateVal = ParamUtil.getString(request, "newBirthDate");
-		System.out.printf("date='%s'", dateVal);
-
 		try {
 			long idLong = Long.parseUnsignedLong(strId);
 			long postIdLong = Long.parseUnsignedLong(postId);

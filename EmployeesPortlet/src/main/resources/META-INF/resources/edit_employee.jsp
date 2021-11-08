@@ -23,15 +23,15 @@
 	birthDateCalendar.setTime(birthDate);
 
     information = String.format(
-		"Current employee data<br>ID: %s<br>First name: %s<br>Last name: %s<br>Middle name: %s<br>Birth date: %s<br>Post ID: %s<br>Sex: %s",
-		id,
-        firstName,
-        lastName,
-        middleName,
-        birthDateStr,
-        postId,
-        sex ? "Female" : "Male"
- 	);
+            "Current employee data<br>ID: %s<br>Last name: %s<br>First name: %s<br>Middle name: %s<br>Birth date: %s<br>Post ID: %s<br>Sex: %s",
+            id,
+            lastName,
+            firstName,
+            middleName,
+            birthDateStr,
+            postId,
+            sex ? "Female" : "Male"
+    );
 %>
 
 <portlet:renderURL var="viewURL">

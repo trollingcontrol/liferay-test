@@ -43,8 +43,8 @@
         %>
 
         <liferay-ui:search-container-column-text property="employeeId" name="ID" />
+        <liferay-ui:search-container-column-text property="lastName" name="Last name" />
         <liferay-ui:search-container-column-text property="firstName" name="First name" />
-		<liferay-ui:search-container-column-text property="lastName" name="Last name" />
 		<liferay-ui:search-container-column-text property="middleName" name="Middle name" />
 		<liferay-ui:search-container-column-date property="birthDate" name="Birth date" />
 		<liferay-ui:search-container-column-text
