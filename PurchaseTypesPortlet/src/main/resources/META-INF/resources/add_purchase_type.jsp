@@ -13,7 +13,7 @@
 
     <liferay-ui:error key="nameTooLong" message="name-too-long" />
     <liferay-ui:error key="nameEmpty" message="name-empty" />
-    <liferay-ui:error key="errorAddingPost" message="error-adding-post" />
+    <liferay-ui:error key="errorAddingPurchaseType" message="error-adding-purchase-type" />
 
     <aui:button-row>
         <aui:button type="submit" />

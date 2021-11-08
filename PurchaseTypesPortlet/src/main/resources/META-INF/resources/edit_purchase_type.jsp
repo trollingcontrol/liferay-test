@@ -33,9 +33,8 @@
 
     <liferay-ui:error key="nameTooLong" message="name-too-long" />
     <liferay-ui:error key="nameEmpty" message="name-empty" />
-    <liferay-ui:error key="invalidNumbers" message="invalid-numbers" />
-    <liferay-ui:error key="postNotFound" message="post-not-found" />
-    <liferay-ui:error key="errorUpdatingPost" message="error-updating-post" />
+    <liferay-ui:error key="purchaseTypeNotFound" message="purchase-type-not-found" />
+    <liferay-ui:error key="errorUpdatingPurchaseType" message="error-updating-purchase-type" />
 
     <aui:button-row>
         <aui:button type="submit" />

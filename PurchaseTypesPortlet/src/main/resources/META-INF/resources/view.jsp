@@ -2,16 +2,19 @@
 <%@ include file="init.jsp" %>
 
 <portlet:renderURL var="addPurchaseTypeURL">
-	<portlet:param name="mvcPath" value="/add_product_type.jsp" />
+	<portlet:param name="mvcPath" value="/add_purchase_type.jsp" />
 </portlet:renderURL>
 
 <portlet:renderURL var="editPurchaseTypeURL">
-	<portlet:param name="mvcPath" value="/edit_product_type.jsp" />
+	<portlet:param name="mvcPath" value="/edit_purchase_type.jsp" />
 </portlet:renderURL>
 
 <aui:button-row>
 	<aui:button onClick="<%= addPurchaseTypeURL %>" value="+" />
 </aui:button-row>
+
+<liferay-ui:error key="purchaseTypeNotFound" message="purchase-type-not-found" />
+<liferay-ui:error key="errorDeletingPurchaseType" message="error-deleting-purchase-type" />
 
 <liferay-ui:search-container total="<%= PurchaseTypeLocalServiceUtil.getPurchaseTypesCount() %>">
 	<liferay-ui:search-container-results
@@ -34,7 +37,6 @@
 
 </liferay-ui:search-container>
 
-<liferay-ui:success key="productNameNotChanged" message="product-type-name-not-changed" />
-<liferay-ui:success key="productTypeAdded" message="product-type-added" />
-<liferay-ui:success key="productTypeDeleted" message="product-type-deleted" />
-<liferay-ui:success key="productTypeUpdated" message="product-type-updated" />
+<liferay-ui:success key="purchaseTypeAdded" message="purchase-type-added" />
+<liferay-ui:success key="purchaseTypeUpdated" message="purchase-type-updated" />
+<liferay-ui:success key="purchaseTypeDeleted" message="purchase-type-deleted" />
