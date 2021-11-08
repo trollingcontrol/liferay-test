@@ -2,17 +2,19 @@
 <%@ include file="init.jsp" %>
 
 <%
+    String costOriginal = ParamUtil.getString(request, "cost");
+
     String id = ParamUtil.getString(request, "id");
 	String name = ParamUtil.getString(request, "name");
 	String typeId = ParamUtil.getString(request, "typeId");
 	String cost = String.format(Locale.ENGLISH, "%.2f", (float)ParamUtil.getLong(request, "cost") / 100);
 	String amount = ParamUtil.getString(request,"amount");
-	boolean present = ParamUtil.getBoolean(request,"present");
-	boolean archived = ParamUtil.getBoolean(request,"archived");
-	String description = ParamUtil.getString(request,"description");
+	boolean present = ParamUtil.getBoolean(request, "present");
+	boolean archived = ParamUtil.getBoolean(request, "archived");
+	String description = ParamUtil.getString(request, "description");
 
 	String information = String.format(
-			"Current product data<br>ID: %s<br>Name: %s<br>Type ID: %s<br>Cost: %s RUB<br>Amount: %s<br>Present: %s<br>Archived: %s<br>Description<br>%s",
+			"Current product data<br>ID: %s<br>Name: %s<br>Type ID: %s<br>Cost: %s RUB<br>Amount: %s<br>Present: %s<br>Archived: %s<br>Description:<br>%s",
 			id,
 			name,
 			typeId,
@@ -30,6 +32,13 @@
 
 <portlet:actionURL name="editProduct" var="editProductURL">
     <portlet:param name="id" value="<%= id %>" />
+    <portlet:param name="cost" value="<%= costOriginal %>" />
+    <portlet:param name="name" value="<%= name %>" />
+    <portlet:param name="typeId" value="<%= typeId %>" />
+    <portlet:param name="amount" value="<%= amount %>" />
+    <portlet:param name="present" value="<%= Boolean.toString(present) %>" />
+    <portlet:param name="archived" value="<%= Boolean.toString(archived) %>" />
+    <portlet:param name="description" value="<%= description %>" />
 </portlet:actionURL>
 
 <p>
