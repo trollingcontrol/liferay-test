@@ -14,6 +14,7 @@
     <module>ProductsPortlet</module>
     <module>PostsPortlet</module>
     <module>EmployeesPortlet</module>
+    <module>PurchaseTypesPortlet</module>
   </modules>
   <properties>
     <liferay.repository.url>https://repository-cdn.liferay.com/nexus/content/groups/public/</liferay.repository.url>
