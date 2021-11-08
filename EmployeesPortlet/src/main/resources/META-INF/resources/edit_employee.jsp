@@ -61,18 +61,17 @@
     <liferay-ui:error key="errorUpdatingEmployee" message="error-updating-employee" />
 
     <aui:fieldset>
-        <aui:input name="newFirstName" value="<%= firstName %>" />
         <aui:input name="newLastName" value="<%= lastName %>" />
+        <aui:input name="newFirstName" value="<%= firstName %>" />
         <aui:input name="newMiddleName" value="<%= middleName %>" />
         <aui:input name="newPostId" value="<%= postId %>" />
-        <p>Birth date</p>
-        <liferay-ui:input-date
-            name="newBirthDate"
-            formName="editEmployeeForm"
-            dayValue="<%= birthDateCalendar.get(Calendar.DAY_OF_MONTH) %>"
-            monthValue="<%= birthDateCalendar.get(Calendar.MONTH) %>"
-            yearValue="<%= birthDateCalendar.get(Calendar.YEAR)  %>"
-            lastEnabledDate="<%= birthDate %>"
+        <aui:input name="newBirthDate"
+                   type="date"
+                   value='<%= String.format(
+                           "%d-%02d-%02d",
+                           birthDateCalendar.get(Calendar.YEAR),
+                           birthDateCalendar.get(Calendar.MONTH) + 1,
+                           birthDateCalendar.get(Calendar.DAY_OF_MONTH)) %>'
         />
         <p>Sex:</p>
         <aui:input name="newSexGroup" type="radio" label="Male" value="<%= false %>" checked="<%= !sex %>" />

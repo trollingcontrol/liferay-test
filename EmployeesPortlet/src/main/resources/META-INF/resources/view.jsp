@@ -1,3 +1,6 @@
+<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
+<%@ page import="com.trollingcont.servicebuilder.model.Post" %>
+<%@ page import="com.trollingcont.servicebuilder.service.PostLocalServiceUtil" %>
 <%@ include file="init.jsp" %>
 
 <portlet:renderURL var="addEmployeeURL">
@@ -28,13 +31,27 @@
             className="com.trollingcont.servicebuilder.model.Employee"
             modelVar="employee">
 
+        <%
+            String postName;
+            try {
+                Post post = PostLocalServiceUtil.getPost(employee.getPostId());
+                postName = post.getName();
+            }
+            catch (PortalException nspe) {
+                postName = "Unknown";
+            }
+        %>
+
         <liferay-ui:search-container-column-text property="employeeId" name="ID" />
         <liferay-ui:search-container-column-text property="firstName" name="First name" />
 		<liferay-ui:search-container-column-text property="lastName" name="Last name" />
 		<liferay-ui:search-container-column-text property="middleName" name="Middle name" />
 		<liferay-ui:search-container-column-date property="birthDate" name="Birth date" />
-		<liferay-ui:search-container-column-text property="postId" name="Post ID" />
-		<liferay-ui:search-container-column-text value="<%= employee.getSex() ? "Female" : "Male" %>" name="Sex" />
+		<liferay-ui:search-container-column-text
+                value='<%= String.format("%s (%d)", postName, employee.getPostId()) %>'
+                name="Post (post ID)"
+        />
+		<liferay-ui:search-container-column-text value='<%= employee.getSex() ? "Female" : "Male" %>' name="Sex" />
         <liferay-ui:search-container-column-jsp path="/employee_actions.jsp" />
 
     </liferay-ui:search-container-row>

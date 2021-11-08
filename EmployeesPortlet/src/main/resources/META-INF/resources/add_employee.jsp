@@ -12,18 +12,17 @@
 
 <aui:form action="<%= addEmployeeURL %>" name="<portlet:namespace />addEmployeeForm">
     <aui:fieldset>
-        <aui:input name="firstName" />
         <aui:input name="lastName" />
+        <aui:input name="firstName" />
         <aui:input name="middleName" />
         <aui:input name="postId" />
-        <p>Birth date</p>
-        <liferay-ui:input-date
-            name="birthDate"
-            formName="addEmployeeForm"
-            dayValue="<%= currentDate.get(Calendar.DAY_OF_MONTH) %>"
-            monthValue="<%= currentDate.get(Calendar.MONTH) %>"
-            yearValue="<%= currentDate.get(Calendar.YEAR)  %>"
-            lastEnabledDate="<%= currentDate.getTime() %>"
+        <aui:input name="birthDate"
+                   type="date"
+                   value='<%= String.format(
+                           "%d-%02d-%02d",
+                           currentDate.get(Calendar.YEAR),
+                           currentDate.get(Calendar.MONTH) + 1,
+                           currentDate.get(Calendar.DAY_OF_MONTH)) %>'
         />
         <p>Sex:</p>
         <aui:input name="sexGroup" type="radio" label="Male" value="<%= false %>" checked="<%= true %>" />

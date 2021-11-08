@@ -23,6 +23,7 @@ import org.osgi.service.component.annotations.Reference;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,7 +50,7 @@ public class EmployeesPortlet extends MVCPortlet {
 
 	Log log = LogFactoryUtil.getLog(EmployeesPortlet.class.getName());
 
-	SimpleDateFormat inputDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 	public void addEmployee(ActionRequest request, ActionResponse response)
 			throws PortalException {
@@ -133,6 +134,9 @@ public class EmployeesPortlet extends MVCPortlet {
 		String postId = ParamUtil.getString(request, "newPostId");
 		boolean sexGroup = ParamUtil.getBoolean(request, "newSexGroup");
 
+		String dateVal = ParamUtil.getString(request, "newBirthDate");
+		System.out.printf("date='%s'", dateVal);
+
 		try {
 			long idLong = Long.parseUnsignedLong(strId);
 			long postIdLong = Long.parseUnsignedLong(postId);
@@ -147,6 +151,7 @@ public class EmployeesPortlet extends MVCPortlet {
 			employee.setMiddleName(middleName);
 			employee.setSex(sexGroup);
 			employee.setBirthDate(birthDate);
+			employee.setPostId(postIdLong);
 
 			_employeeLocalService.updateEmployee(employee, serviceContext);
 
