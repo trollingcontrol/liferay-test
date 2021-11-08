@@ -17,6 +17,7 @@
 
 <portlet:actionURL name="editPost" var="editPostURL">
     <portlet:param name="id" value="<%= id %>" />
+    <portlet:param name="name" value="<%= name %>" />
 </portlet:actionURL>
 
 <p>
