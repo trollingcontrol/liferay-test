@@ -1,3 +1,8 @@
+<%@ page import="java.util.Locale" %>
+<%@ page import="com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil" %>
+<%@ page import="com.trollingcont.servicebuilder.model.ProductType" %>
+<%@ page import="com.trollingcont.servicebuilder.exception.NoSuchProductTypeException" %>
+<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
 <%@ include file="init.jsp" %>
 
 <portlet:renderURL var="addProductURL">
@@ -29,13 +34,27 @@
             className="com.trollingcont.servicebuilder.model.Product"
             modelVar="product">
 
+        <%
+            String typeName;
+            try {
+                ProductType type = ProductTypeLocalServiceUtil.getProductType(product.getProductTypeId());
+                typeName = type.getName();
+            }
+            catch (PortalException nspte) {
+                typeName = "[Can't find type name]";
+            }
+        %>
+
         <liferay-ui:search-container-column-text property="productId" name="ID" />
         <liferay-ui:search-container-column-text property="name" name="Name" />
-		<liferay-ui:search-container-column-text property="productTypeId" name="Type ID" />
-		<liferay-ui:search-container-column-text value="<%= String.format("%.2f", (float)product.getCost() / 100) %>" name="Cost" />
+		<liferay-ui:search-container-column-text
+                value='<%= String.format("%s (%d)", typeName, product.getProductTypeId()) %>'
+                name="Type (ID)"
+        />
+		<liferay-ui:search-container-column-text value='<%= String.format(Locale.ENGLISH, "%.2f", (float)product.getCost() / 100) %>' name="Cost" />
 		<liferay-ui:search-container-column-text property="amount" name="Amount" />
-		<liferay-ui:search-container-column-text value="<%= product.getPresent() ? "Yes" : "No" %>" name="Is present?" />
-		<liferay-ui:search-container-column-text value="<%= product.getArchived() ? "Yes" : "No" %>" name="Is archived?" />
+		<liferay-ui:search-container-column-text value='<%= product.getPresent() ? "Yes" : "No" %>' name="Is present?" />
+		<liferay-ui:search-container-column-text value='<%= product.getArchived() ? "Yes" : "No" %>' name="Is archived?" />
 		<liferay-ui:search-container-column-text property="description" name="Description" />
         <liferay-ui:search-container-column-jsp path="/product_actions.jsp" />
 

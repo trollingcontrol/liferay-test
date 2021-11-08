@@ -1,10 +1,11 @@
+<%@ page import="java.util.Locale" %>
 <%@ include file="init.jsp" %>
 
 <%
     String id = ParamUtil.getString(request, "id");
 	String name = ParamUtil.getString(request, "name");
 	String typeId = ParamUtil.getString(request, "typeId");
-	String cost = String.format("%.2f", (float)ParamUtil.getLong(request, "cost") / 100);
+	String cost = String.format(Locale.ENGLISH, "%.2f", (float)ParamUtil.getLong(request, "cost") / 100);
 	String amount = ParamUtil.getString(request,"amount");
 	boolean present = ParamUtil.getBoolean(request,"present");
 	boolean archived = ParamUtil.getBoolean(request,"archived");
@@ -33,7 +34,7 @@
 
 <p>
     <%= information %>
-</P>
+</p>
 
 <aui:form action="<%= editProductURL %>" name="editProductForm">
 
