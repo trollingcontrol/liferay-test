@@ -69,7 +69,7 @@
     <plugins>
       <plugin>
         <configuration>
-          <liferayHome>C:\liferay-ce-portal-7.3.5-ga6</liferayHome>
+          <liferayHome>C:\Users\omskd\Desktop\Temp\Liferay\liferay-ce-portal-7.3.5-ga6</liferayHome>
         </configuration>
         <groupId>com.liferay</groupId>
         <artifactId>com.liferay.portal.tools.bundle.support</artifactId>
