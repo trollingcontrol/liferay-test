@@ -79,6 +79,10 @@
 
 		<column name="purchaseTypeId" type="long" />
 
+		<order>
+			<order-column name="datePurchased" order-by="desc" />
+		</order>
+
 	</entity>
 
 	<entity local-service="true" name="EmployeeRight" remote-service="true">

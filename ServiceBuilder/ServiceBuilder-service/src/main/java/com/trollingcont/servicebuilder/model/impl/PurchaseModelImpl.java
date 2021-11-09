@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 
 import com.trollingcont.servicebuilder.model.Purchase;
@@ -93,10 +94,10 @@ public class PurchaseModelImpl
 	public static final String TABLE_SQL_DROP = "drop table LS_Purchase";
 
 	public static final String ORDER_BY_JPQL =
-		" ORDER BY purchase.purchaseId ASC";
+		" ORDER BY purchase.datePurchased DESC";
 
 	public static final String ORDER_BY_SQL =
-		" ORDER BY LS_Purchase.purchaseId ASC";
+		" ORDER BY LS_Purchase.datePurchased DESC";
 
 	public static final String DATA_SOURCE = "liferayDataSource";
 
@@ -115,7 +116,7 @@ public class PurchaseModelImpl
 	 *		#getColumnBitmask(String)}
 	 */
 	@Deprecated
-	public static final long PURCHASEID_COLUMN_BITMASK = 2L;
+	public static final long DATEPURCHASED_COLUMN_BITMASK = 2L;
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), with no direct replacement
@@ -504,17 +505,18 @@ public class PurchaseModelImpl
 
 	@Override
 	public int compareTo(Purchase purchase) {
-		long primaryKey = purchase.getPrimaryKey();
+		int value = 0;
 
-		if (getPrimaryKey() < primaryKey) {
-			return -1;
+		value = DateUtil.compareTo(
+			getDatePurchased(), purchase.getDatePurchased());
+
+		value = value * -1;
+
+		if (value != 0) {
+			return value;
 		}
-		else if (getPrimaryKey() > primaryKey) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	}
 
 	@Override
