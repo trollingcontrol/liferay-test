@@ -16,7 +16,7 @@
     <liferay-ui:error key="productIsMissing" message="product-is-missing" />
     <liferay-ui:error key="accessDenied" message="access-denied" />
     <liferay-ui:error key="invalidNumbers" message="invalid-numbers" />
-    <liferay-ui:error key="productNotFound" message="product-not-found" />
+    <liferay-ui:error key="purchasedProductNotFound" message="purchased-product-not-found" />
     <liferay-ui:error key="employeeNotFound" message="employee-not-found" />
     <liferay-ui:error key="purchaseTypeNotFound" message="purchase-type-not-found" />
     <liferay-ui:error key="errorAddingPurchase" message="error-adding-purchase" />

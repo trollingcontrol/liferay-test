@@ -8,10 +8,10 @@
 	<aui:button onClick="<%= addPurchaseURL %>" value="+" />
 </aui:button-row>
 
-<liferay-ui:error key="invalidProductId" message="invalid-product-id" />
-<liferay-ui:error key="productIdNotFound" message="product-id-not-found" />
-<liferay-ui:error key="errorDeletingProduct" message="error-deleting-product" />
-<liferay-ui:error key="errorDeletingProduct" message="error-deleting-product" />
+<liferay-ui:error key="invalidNumbers" message="invalid-numbers" />
+<liferay-ui:error key="purchaseNotFound" message="purchase-not-found" />
+<liferay-ui:error key="productNotFound" message="returned-product-not-found" />
+<liferay-ui:error key="errorDeletingPurchase" message="error-deleting-purchase" />
 
 <liferay-ui:search-container total="<%= PurchaseLocalServiceUtil.getPurchasesCount() %>">
 	<liferay-ui:search-container-results
@@ -84,6 +84,5 @@
 
 </liferay-ui:search-container>
 
-<liferay-ui:success key="productAdded" message="product-added" />
-<liferay-ui:success key="productDeleted" message="product-deleted" />
-<liferay-ui:success key="productUpdated" message="product-updated" />
+<liferay-ui:success key="purchaseAdded" message="purchase-added" />
+<liferay-ui:success key="purchaseDeleted" message="purchase-deleted" />

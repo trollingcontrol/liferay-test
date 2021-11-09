@@ -100,7 +100,7 @@ public class PurchasesPortlet extends MVCPortlet {
 			SessionErrors.add(request, "invalidNumbers");
 		}
 		catch (NoSuchProductException nspe) {
-			SessionErrors.add(request, "productNotFound");
+			SessionErrors.add(request, "purchasedProductNotFound");
 		}
 		catch (NoSuchEmployeeException nsee) {
 			SessionErrors.add(request, "employeeNotFound");
@@ -142,7 +142,7 @@ public class PurchasesPortlet extends MVCPortlet {
 			SessionErrors.add(request, "purchaseNotFound");
 		}
 		catch (NoSuchProductException nspe) {
-			SessionErrors.add(request, "productNotFound");
+			SessionErrors.add(request, "returnedProductNotFound");
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(request, "errorDeletingPurchase");
