@@ -34,6 +34,7 @@
     <liferay-ui:error key="invalidNames" message="invalid-names" />
     <liferay-ui:error key="postNotFound" message="post-not-found" />
     <liferay-ui:error key="errorAddingEmployee" message="error-adding-employee" />
+    <liferay-ui:error key="dateInFuture" message="date-in-future" />
 
     <aui:button-row>
         <aui:button type="submit" />

@@ -67,6 +67,10 @@ public class EmployeesPortlet extends MVCPortlet {
 			long postIdLong = Long.parseUnsignedLong(postId);
 			Date birthDate  = inputDateFormat.parse(ParamUtil.getString(request, "birthDate"));
 
+			if (birthDate.after(new Date())) {
+				throw new IllegalStateException("dateInFuture");
+			}
+
 			_postLocalService.getPost(postIdLong);
 
 			_employeeLocalService.addEmployee(
@@ -88,6 +92,9 @@ public class EmployeesPortlet extends MVCPortlet {
 			response.setRenderParameter(
 					"mvcPath", "/view.jsp"
 			);
+		}
+		catch (IllegalStateException ise) {
+			SessionErrors.add(request, ise.getMessage());
 		}
 		catch (ParseException pe) {
 			SessionErrors.add(request, "invalidDateFormat");

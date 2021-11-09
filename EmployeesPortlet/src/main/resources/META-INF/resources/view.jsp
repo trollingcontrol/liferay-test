@@ -80,7 +80,7 @@
                 name="Post (post ID)"
         />
 		<liferay-ui:search-container-column-text value='<%= employee.getSex() ? "Female" : "Male" %>' name="Sex" />
-        <liferay-ui:search-container-column-text value='<%= rightsList.toString() %>' name="Rights list (type name (type ID))" />
+        <liferay-ui:search-container-column-text value='<%= rightsList.toString() %>' name="Allowed product types (type (type ID))" />
         <liferay-ui:search-container-column-jsp path="/employee_actions.jsp" />
 
     </liferay-ui:search-container-row>
