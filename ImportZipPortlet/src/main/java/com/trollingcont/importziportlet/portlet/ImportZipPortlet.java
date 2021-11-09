@@ -16,6 +16,7 @@ import javax.portlet.Portlet;
 
 import com.trollingcont.servicebuilder.model.*;
 import com.trollingcont.servicebuilder.service.*;
+import com.trollingcont.servicebuilder.service.persistence.EmployeePersistence;
 import org.osgi.service.component.annotations.Component;
 
 import java.io.*;
@@ -186,24 +187,35 @@ public class ImportZipPortlet extends MVCPortlet {
 				Employee.class.getName(), request
 		);
 
-		final int LAST_NAME_INDEX = 0;
-		final int FIRST_NAME_INDEX = 1;
-		final int MIDDLE_NAME_INDEX = 2;
-		final int BIRTH_DATE_INDEX = 3;
-		final int POST_ID_INDEX = 4;
-		final int SEX_INDEX = 5;
+		final int ID_INDEX = 0;
+		final int LAST_NAME_INDEX = 1;
+		final int FIRST_NAME_INDEX = 2;
+		final int MIDDLE_NAME_INDEX = 3;
+		final int BIRTH_DATE_INDEX = 4;
+		final int POST_ID_INDEX = 5;
+		final int SEX_INDEX = 6;
 
 		for (List<String> entry : csvList) {
 			try {
-				EmployeeLocalServiceUtil.addEmployee(
-						entry.get(FIRST_NAME_INDEX),
-						entry.get(LAST_NAME_INDEX),
-						entry.get(MIDDLE_NAME_INDEX),
-						csvDateFormat.parse(entry.get(BIRTH_DATE_INDEX)),
-						Long.parseUnsignedLong(entry.get(POST_ID_INDEX)),
-						Boolean.parseBoolean(entry.get(SEX_INDEX)),
-						serviceContext
-				);
+				long employeeId = Long.parseUnsignedLong(entry.get(ID_INDEX));
+
+				Employee employee;
+
+				try {
+					employee = EmployeeLocalServiceUtil.getEmployee(employeeId);
+				}
+				catch (PortalException pe) {
+					employee = EmployeeLocalServiceUtil.createEmployee(employeeId);
+				}
+
+				employee.setLastName(entry.get(LAST_NAME_INDEX));
+				employee.setFirstName(entry.get(FIRST_NAME_INDEX));
+				employee.setMiddleName(entry.get(MIDDLE_NAME_INDEX));
+				employee.setBirthDate(csvDateFormat.parse(entry.get(BIRTH_DATE_INDEX)));
+				employee.setPostId(Long.parseUnsignedLong(entry.get(POST_ID_INDEX)));
+				employee.setSex(Boolean.parseBoolean(entry.get(SEX_INDEX)));
+
+				EmployeeLocalServiceUtil.updateEmployee(employee);
 			}
 			catch (Exception e) {
 				System.out.println("Failed to add Employee entry, skipping this entry");
