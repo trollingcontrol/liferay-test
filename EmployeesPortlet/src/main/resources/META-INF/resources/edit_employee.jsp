@@ -58,6 +58,7 @@
     <liferay-ui:error key="invalidNames" message="invalid-names" />
     <liferay-ui:error key="employeeNotFound" message="employee-not-found" />
     <liferay-ui:error key="postNotFound" message="post-not-found" />
+    <liferay-ui:error key="dateInFuture" message="date-in-future" />
     <liferay-ui:error key="errorUpdatingEmployee" message="error-updating-employee" />
 
     <aui:fieldset>
