@@ -1,8 +1,3 @@
-<%@ page import="java.util.Locale" %>
-<%@ page import="com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil" %>
-<%@ page import="com.trollingcont.servicebuilder.model.ProductType" %>
-<%@ page import="com.trollingcont.servicebuilder.exception.NoSuchProductTypeException" %>
-<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
 <%@ include file="init.jsp" %>
 
 <portlet:renderURL var="addProductURL">
@@ -51,7 +46,7 @@
                 value='<%= String.format("%s (%d)", typeName, product.getProductTypeId()) %>'
                 name="Type (ID)"
         />
-		<liferay-ui:search-container-column-text value='<%= String.format(Locale.ENGLISH, "%.2f", (float)product.getCost() / 100) %>' name="Cost" />
+		<liferay-ui:search-container-column-text value='<%= String.format(Locale.ENGLISH, "%.2f", (double)product.getCost() / 100) %>' name="Cost" />
 		<liferay-ui:search-container-column-text property="amount" name="Amount" />
 		<liferay-ui:search-container-column-text value='<%= product.getPresent() ? "Yes" : "No" %>' name="Is present?" />
 		<liferay-ui:search-container-column-text value='<%= product.getArchived() ? "Yes" : "No" %>' name="Is archived?" />

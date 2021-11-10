@@ -12,6 +12,11 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.trollingcont.servicebuilder.model.Product" %>
 <%@ page import="com.trollingcont.servicebuilder.service.ProductLocalServiceUtil" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil" %>
+<%@ page import="com.trollingcont.servicebuilder.model.ProductType" %>
+<%@ page import="com.trollingcont.servicebuilder.exception.NoSuchProductTypeException" %>
+<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
 
 <liferay-theme:defineObjects />
 

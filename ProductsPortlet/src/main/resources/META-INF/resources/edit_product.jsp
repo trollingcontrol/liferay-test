@@ -1,4 +1,3 @@
-<%@ page import="java.util.Locale" %>
 <%@ include file="init.jsp" %>
 
 <%

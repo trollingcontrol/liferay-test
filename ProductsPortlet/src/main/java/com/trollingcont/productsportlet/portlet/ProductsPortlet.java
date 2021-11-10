@@ -16,7 +16,9 @@ import com.trollingcont.servicebuilder.exception.NoSuchProductTypeException;
 import com.trollingcont.servicebuilder.exception.ProductException;
 import com.trollingcont.servicebuilder.model.Product;
 import com.trollingcont.servicebuilder.service.ProductLocalService;
+import com.trollingcont.servicebuilder.service.ProductLocalServiceUtil;
 import com.trollingcont.servicebuilder.service.ProductTypeLocalService;
+import com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -44,8 +46,6 @@ import javax.portlet.Portlet;
 )
 public class ProductsPortlet extends MVCPortlet {
 
-	Log log = LogFactoryUtil.getLog(ProductsPortlet.class.getName());
-
 	public void addProduct(ActionRequest request, ActionResponse response)
 			throws PortalException {
 
@@ -66,9 +66,9 @@ public class ProductsPortlet extends MVCPortlet {
 		try {
 			long productTypeIdLong = Long.parseUnsignedLong(productTypeId);
 
-			_productTypeLocalService.getProductType(productTypeIdLong);
+			ProductTypeLocalServiceUtil.getProductType(productTypeIdLong);
 
-			_productLocalService.addProduct(
+			ProductLocalServiceUtil.addProduct(
 					name,
 					productTypeIdLong,
 					Long.parseUnsignedLong(cost),
@@ -151,11 +151,11 @@ public class ProductsPortlet extends MVCPortlet {
 
 			long idLong = Long.parseUnsignedLong(id);
 			long typeIdLong = Long.parseUnsignedLong(typeId);
-			long costLong = (long)(Float.parseFloat(cost) * 100);
+			long costLong = (long)(Double.parseDouble(cost) * 100);
 			long amountLong = Long.parseUnsignedLong(amount);
 
-			Product product = _productLocalService.getProduct(idLong);
-			_productTypeLocalService.getProductType(typeIdLong);
+			Product product = ProductLocalServiceUtil.getProduct(idLong);
+			ProductTypeLocalServiceUtil.getProductType(typeIdLong);
 
 			product.setName(name);
 			product.setProductTypeId(typeIdLong);
@@ -165,7 +165,7 @@ public class ProductsPortlet extends MVCPortlet {
 			product.setArchived(archived);
 			product.setDescription(description);
 
-			_productLocalService.updateProduct(product, serviceContext);
+			ProductLocalServiceUtil.updateProduct(product, serviceContext);
 
 			SessionMessages.add(request, "productUpdated");
 
@@ -217,13 +217,12 @@ public class ProductsPortlet extends MVCPortlet {
 		}
 	}
 
-	public void deleteProduct(ActionRequest request, ActionResponse response)
-			throws PortalException {
+	public void deleteProduct(ActionRequest request, ActionResponse response) {
 
 		String strId = ParamUtil.getString(request, "productIdToBeDeleted");
 
 		try {
-			_productLocalService.deleteProduct(Long.parseUnsignedLong(strId));
+			ProductLocalServiceUtil.deleteProduct(Long.parseUnsignedLong(strId));
 
 			SessionMessages.add(request, "productDeleted");
 		}
@@ -237,17 +236,4 @@ public class ProductsPortlet extends MVCPortlet {
 			SessionErrors.add(request, "errorDeletingProduct");
 		}
 	}
-
-	@Reference(unbind = "-")
-	protected void setProductTypeLocalService(ProductTypeLocalService electronicsTypeLocalService) {
-		_productTypeLocalService = electronicsTypeLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setProductLocalService(ProductLocalService productLocalService) {
-		_productLocalService = productLocalService;
-	}
-
-	private ProductTypeLocalService _productTypeLocalService;
-	private ProductLocalService _productLocalService;
 }
