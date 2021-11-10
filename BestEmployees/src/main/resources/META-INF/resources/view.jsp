@@ -9,7 +9,7 @@
 
 <p>Best 3 or less employees grouped by posts by summary cost of its purchases for last 30 days.</p>
 <p>
-	Warning: if system can't retrieve cost of the product (possibly due to lack of this product in base),
+	Warning: if system can't retrieve cost of the product (possibly due to lack of it in base),
 	it just skips that product, i.e. its cost becomes equal zero.
 </p>
 
