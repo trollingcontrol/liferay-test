@@ -1,8 +1,3 @@
-<%@ page import="com.trollingcont.bestemployees.portlet.BestEmployeeEntry" %>
-<%@ page import="com.trollingcont.servicebuilder.model.Post" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Map" %>
 <%@ page errorPage="error.jsp" %>
 <%@ include file="init.jsp" %>
 
@@ -12,7 +7,11 @@
 
 %>
 
-<p>Best employees grouped by posts by summary cost of its purchases for last 30 days.</p>
+<p>Best 3 or less employees grouped by posts by summary cost of its purchases for last 30 days.</p>
+<p>
+	Warning: if system can't retrieve cost of the product (possibly due to lack of this product in base),
+	it just skips that product, i.e. its cost becomes equal zero.
+</p>
 
 <% if (bestEmployeesMap.size() == 0) { %>
 <p>Nothing to show. There are no posts in system base.</p>

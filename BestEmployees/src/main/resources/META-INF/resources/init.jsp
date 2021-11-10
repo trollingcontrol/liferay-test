@@ -7,6 +7,12 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.trollingcont.bestemployees.portlet.BestEmployeeEntry" %>
+<%@ page import="com.trollingcont.servicebuilder.model.Post" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
