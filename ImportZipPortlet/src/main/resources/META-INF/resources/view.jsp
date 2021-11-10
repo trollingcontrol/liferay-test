@@ -34,6 +34,10 @@
 	}
 %>
 
+<liferay-ui:error key="fileNotSelected" message="file-not-selected" />
+<liferay-ui:error key="failedToOpenZip" message="failed-to-open-zip" />
+<liferay-ui:error key="errorReadingZip" message="error-reading-zip" />
+
 <div>
 	<p>Select ZIP archive to import data to system</p>
 	<aui:form id="uploadForm" action="<%= importZipURL %>" enctype="multipart/form-data" name="<portlet:namespace />importZipForm" method="post">
@@ -42,7 +46,7 @@
 	</aui:form>
 </div>
 
-<div style="color: #004000"><%= importResultStr %></div>
+<div style="color: #008000"><%= importResultStr %></div>
 
 <div>
 	<p>File format: ZIP archive with CSV files in root directory.</p>

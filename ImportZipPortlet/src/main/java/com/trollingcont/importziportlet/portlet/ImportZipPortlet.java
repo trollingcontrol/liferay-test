@@ -97,7 +97,7 @@ public class ImportZipPortlet extends MVCPortlet {
 			SessionErrors.add(request, ise.getMessage());
 		}
 		catch (IOException ioe) {
-			SessionErrors.add(request, "failedToProcessZip");
+			SessionErrors.add(request, "failedToOpenZip");
 		}
 	}
 
