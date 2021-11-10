@@ -1,13 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
-<%@ page import="com.trollingcont.servicebuilder.model.Post" %>
-<%@ page import="com.trollingcont.servicebuilder.service.PostLocalServiceUtil" %>
-<%@ page import="com.trollingcont.servicebuilder.model.EmployeeRight" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.trollingcont.servicebuilder.service.EmployeeRightLocalServiceUtil" %>
-<%@ page import="com.trollingcont.servicebuilder.service.persistence.EmployeeRightPersistence" %>
-<%@ page import="javax.sound.sampled.Port" %>
-<%@ page import="com.trollingcont.servicebuilder.model.ProductType" %>
-<%@ page import="com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil" %>
 <%@ include file="init.jsp" %>
 
 <portlet:renderURL var="addEmployeeURL">

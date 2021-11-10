@@ -1,4 +1,3 @@
-<%@ page import="com.trollingcont.servicebuilder.model.EmployeeRight" %>
 <%@ include file="init.jsp" %>
 
 <%

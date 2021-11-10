@@ -1,9 +1,3 @@
-<%@ page import="com.trollingcont.servicebuilder.model.EmployeeRight" %>
-<%@ page import="com.trollingcont.servicebuilder.service.EmployeeRightLocalServiceUtil" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil" %>
-<%@ page import="com.trollingcont.servicebuilder.model.ProductType" %>
-<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
 <%@ include file="init.jsp" %>
 <%@ page errorPage="error.jsp" %>
 

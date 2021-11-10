@@ -71,9 +71,9 @@ public class EmployeesPortlet extends MVCPortlet {
 				throw new IllegalStateException("dateInFuture");
 			}
 
-			_postLocalService.getPost(postIdLong);
+			PostLocalServiceUtil.getPost(postIdLong);
 
-			_employeeLocalService.addEmployee(
+			EmployeeLocalServiceUtil.addEmployee(
 					firstName,
 					lastName,
 					middleName,
@@ -146,9 +146,9 @@ public class EmployeesPortlet extends MVCPortlet {
 				throw new IllegalStateException("dateInFuture");
 			}
 
-			_postLocalService.getPost(postIdLong);
+			PostLocalServiceUtil.getPost(postIdLong);
 
-			Employee employee = _employeeLocalService.getEmployee(idLong);
+			Employee employee = EmployeeLocalServiceUtil.getEmployee(idLong);
 
 			employee.setFirstName(firstName);
 			employee.setLastName(lastName);
@@ -157,7 +157,7 @@ public class EmployeesPortlet extends MVCPortlet {
 			employee.setBirthDate(birthDate);
 			employee.setPostId(postIdLong);
 
-			_employeeLocalService.updateEmployee(employee, serviceContext);
+			EmployeeLocalServiceUtil.updateEmployee(employee, serviceContext);
 
 			SessionMessages.add(request, "employeeUpdated");
 
@@ -200,13 +200,12 @@ public class EmployeesPortlet extends MVCPortlet {
 		}
 	}
 
-	public void deleteEmployee(ActionRequest request, ActionResponse response)
-			throws PortalException  {
+	public void deleteEmployee(ActionRequest request, ActionResponse response) {
 
 		String strId = ParamUtil.getString(request, "employeeIdToBeDeleted");
 
 		try {
-			_employeeLocalService.deleteEmployee(Long.parseUnsignedLong(strId));
+			EmployeeLocalServiceUtil.deleteEmployee(Long.parseUnsignedLong(strId));
 
 			SessionMessages.add(request, "employeeDeleted");
 		}
@@ -255,9 +254,9 @@ public class EmployeesPortlet extends MVCPortlet {
 				throw new IllegalStateException("rightAlreadyExists");
 			}
 
-			_productTypeLocalService.getProductType(typeId);
+			ProductTypeLocalServiceUtil.getProductType(typeId);
 
-			_employeeRightLocalService.addEmployeeRight(
+			EmployeeRightLocalServiceUtil.addEmployeeRight(
 					employeeId,
 					typeId,
 					serviceContext
@@ -286,29 +285,4 @@ public class EmployeesPortlet extends MVCPortlet {
 				"mvcPath", isSuccessful ? "/employee_rights.jsp" : "/add_employee_right.jsp"
 		);
 	}
-
-	@Reference(unbind = "-")
-	protected void setEmployeeLocalService(EmployeeLocalService employeeLocalService) {
-		_employeeLocalService = employeeLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setPostLocalService(PostLocalService postLocalService) {
-		_postLocalService = postLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setEmployeeRightLocalService(EmployeeRightLocalService employeeRightLocalService) {
-		_employeeRightLocalService = employeeRightLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setProductTypeLocalService(ProductTypeLocalService productTypeLocalService) {
-		_productTypeLocalService = productTypeLocalService;
-	}
-
-	private ProductTypeLocalService _productTypeLocalService;
-	private EmployeeRightLocalService _employeeRightLocalService;
-	private EmployeeLocalService _employeeLocalService;
-	private PostLocalService _postLocalService;
 }

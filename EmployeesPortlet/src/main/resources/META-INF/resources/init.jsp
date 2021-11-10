@@ -16,6 +16,23 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="java.text.ParseException" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.trollingcont.servicebuilder.model.EmployeeRight" %>
+<%@ page import="com.trollingcont.servicebuilder.service.EmployeeRightLocalServiceUtil" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil" %>
+<%@ page import="com.trollingcont.servicebuilder.model.ProductType" %>
+<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
+<%@ page import="com.trollingcont.servicebuilder.model.EmployeeRight" %>
+<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
+<%@ page import="com.trollingcont.servicebuilder.model.Post" %>
+<%@ page import="com.trollingcont.servicebuilder.service.PostLocalServiceUtil" %>
+<%@ page import="com.trollingcont.servicebuilder.model.EmployeeRight" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.trollingcont.servicebuilder.service.EmployeeRightLocalServiceUtil" %>
+<%@ page import="com.trollingcont.servicebuilder.service.persistence.EmployeeRightPersistence" %>
+<%@ page import="javax.sound.sampled.Port" %>
+<%@ page import="com.trollingcont.servicebuilder.model.ProductType" %>
+<%@ page import="com.trollingcont.servicebuilder.service.ProductTypeLocalServiceUtil" %>
 
 <liferay-theme:defineObjects />
 
