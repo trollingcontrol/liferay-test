@@ -1,5 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
-<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ include file="init.jsp" %>
 
 <%

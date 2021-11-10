@@ -16,6 +16,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="com.trollingcont.servicebuilder.model.Purchase" %>
 <%@ page import="com.trollingcont.servicebuilder.model.PurchaseType" %>
 <%@ page import="com.trollingcont.servicebuilder.service.PurchaseTypeLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
+<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 
 <liferay-theme:defineObjects />
 
