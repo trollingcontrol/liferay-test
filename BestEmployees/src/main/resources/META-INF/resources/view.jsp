@@ -24,7 +24,7 @@
 			<p>Post: <%= entry.getKey().getName() %></p>
 			<ul>
 				<% if (entry.getValue().size() == 0) { %>
-				<p>Nothing to show. There are no employees taking this post.</p>
+				<p>Nothing to show. There are no employees taking this post and/or purchases.</p>
 				<% } %>
 				<% for (BestEmployeeEntry employeeEntry : entry.getValue()) { %>
 				<li><%= String.format(
