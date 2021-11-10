@@ -1,4 +1,3 @@
-<%@ taglib prefix="portlet-ui" uri="http://liferay.com/tld/ui" %>
 <%@ include file="init.jsp" %>
 
 <%

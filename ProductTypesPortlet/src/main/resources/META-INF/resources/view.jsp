@@ -33,7 +33,6 @@
 
 </liferay-ui:search-container>
 
-<liferay-ui:success key="productNameNotChanged" message="product-type-name-not-changed" />
 <liferay-ui:success key="productTypeAdded" message="product-type-added" />
 <liferay-ui:success key="productTypeDeleted" message="product-type-deleted" />
 <liferay-ui:success key="productTypeUpdated" message="product-type-updated" />
