@@ -16,13 +16,17 @@ public class ZipImportResult {
     }
 
     public static class ResultEntry {
+        private final String entryName;
         private final int totalEntriesAmount;
         private final int skippedEntries;
 
-        public ResultEntry(int totalEntriesAmount, int skippedEntries) {
+        public ResultEntry(String entryName, int totalEntriesAmount, int skippedEntries) {
+            this.entryName = entryName;
             this.totalEntriesAmount = totalEntriesAmount;
             this.skippedEntries = skippedEntries;
         }
+
+        public String getEntryName() { return entryName; }
 
         public int getTotalEntriesAmount() {
             return totalEntriesAmount;

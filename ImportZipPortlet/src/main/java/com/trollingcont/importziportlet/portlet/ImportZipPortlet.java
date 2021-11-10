@@ -22,6 +22,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -68,10 +69,12 @@ public class ImportZipPortlet extends MVCPortlet {
 	};
 
 	static final String csvDateFormatPattern = "yyyy-MM-dd";
-	static final String csvTimeFormatPattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+	static final String csvTimeFormatPattern = "yyyy-MM-dd'T'HH:mm:ss";
 
 	private final SimpleDateFormat csvDateFormat = new SimpleDateFormat(csvDateFormatPattern);
 	private final SimpleDateFormat csvTimeFormat = new SimpleDateFormat(csvTimeFormatPattern);
+
+	private Date maxValidDate;
 
 	public void importZip(ActionRequest request, ActionResponse response) {
 
@@ -83,6 +86,8 @@ public class ImportZipPortlet extends MVCPortlet {
 			if (file == null) {
 				throw new IllegalStateException("fileNotSelected");
 			}
+
+			maxValidDate = new Date();
 
 			ZipImportResult importResult = importFromZipFile(new ZipFile(file), request);
 
@@ -115,7 +120,11 @@ public class ImportZipPortlet extends MVCPortlet {
 						int skippedEntries = descriptor.getWriter().write(csvList, request);
 
 						importResult.addResultEntry(
-								new ZipImportResult.ResultEntry(csvList.size(), skippedEntries)
+								new ZipImportResult.ResultEntry(
+										descriptor.getEntryNameToDisplay(),
+										csvList.size(),
+										skippedEntries
+								)
 						);
 					}
 					catch (Exception e) {
@@ -220,10 +229,16 @@ public class ImportZipPortlet extends MVCPortlet {
 					employee = EmployeeLocalServiceUtil.createEmployee(employeeId);
 				}
 
+				Date birthDate = csvDateFormat.parse(entry.get(BIRTH_DATE_INDEX));
+
+				if (birthDate.after(maxValidDate)) {
+					throw new IllegalStateException("dateInFuture");
+				}
+
 				employee.setLastName(entry.get(LAST_NAME_INDEX));
 				employee.setFirstName(entry.get(FIRST_NAME_INDEX));
 				employee.setMiddleName(entry.get(MIDDLE_NAME_INDEX));
-				employee.setBirthDate(csvDateFormat.parse(entry.get(BIRTH_DATE_INDEX)));
+				employee.setBirthDate(birthDate);
 				employee.setPostId(Long.parseUnsignedLong(entry.get(POST_ID_INDEX)));
 				employee.setSex(Boolean.parseBoolean(entry.get(SEX_INDEX)));
 
@@ -329,14 +344,12 @@ public class ImportZipPortlet extends MVCPortlet {
 		return skippedEntries;
 	}
 
-	private int writePurchases(List<List<String>> csvList, ActionRequest request)
-			throws PortalException {
+	private int writePurchases(List<List<String>> csvList, ActionRequest request) {
 
-		//TODO replace by enum
 		final int ID_INDEX = 0;
 		final int PRODUCT_ID_INDEX = 1;
 		final int EMPLOYEE_ID_INDEX = 2;
-		final int TIME_TAKEN_INDEX = 3;
+		final int TIME_PURCHASED_INDEX = 3;
 		final int PURCHASE_TYPE_ID_INDEX = 4;
 
 		int skippedEntries = 0;
@@ -355,9 +368,15 @@ public class ImportZipPortlet extends MVCPortlet {
 					purchase = PurchaseLocalServiceUtil.createPurchase(purchaseId);
 				}
 
+				Date datePurchased = csvTimeFormat.parse(entry.get(TIME_PURCHASED_INDEX));
+
+				if (datePurchased.after(maxValidDate)) {
+					throw new IllegalStateException("dateInFuture");
+				}
+
 				purchase.setProductId(Long.parseUnsignedLong(entry.get(PRODUCT_ID_INDEX)));
 				purchase.setEmployeeId(Long.parseUnsignedLong(entry.get(EMPLOYEE_ID_INDEX)));
-				purchase.setDatePurchased(csvTimeFormat.parse(entry.get(TIME_TAKEN_INDEX)));
+				purchase.setDatePurchased(datePurchased);
 				purchase.setPurchaseTypeId(Long.parseUnsignedLong(entry.get(PURCHASE_TYPE_ID_INDEX)));
 
 				PurchaseLocalServiceUtil.updatePurchase(purchase);
