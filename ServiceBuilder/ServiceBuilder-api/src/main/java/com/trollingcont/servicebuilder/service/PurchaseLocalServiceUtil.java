@@ -267,6 +267,10 @@ public class PurchaseLocalServiceUtil {
 		return getService().getPurchases(start, end);
 	}
 
+	public static List<Purchase> getPurchasesByEmployee(long employeeId) {
+		return getService().getPurchasesByEmployee(employeeId);
+	}
+
 	/**
 	 * Returns the number of purchases.
 	 *

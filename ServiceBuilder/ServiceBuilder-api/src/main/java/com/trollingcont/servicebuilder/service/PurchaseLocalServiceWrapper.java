@@ -296,6 +296,13 @@ public class PurchaseLocalServiceWrapper
 		return _purchaseLocalService.getPurchases(start, end);
 	}
 
+	@Override
+	public java.util.List<com.trollingcont.servicebuilder.model.Purchase>
+		getPurchasesByEmployee(long employeeId) {
+
+		return _purchaseLocalService.getPurchasesByEmployee(employeeId);
+	}
+
 	/**
 	 * Returns the number of purchases.
 	 *

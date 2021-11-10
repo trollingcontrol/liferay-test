@@ -228,6 +228,9 @@ public interface EmployeeLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Employee> getEmployees(int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Employee> getEmployeesByPostId(long postId);
+
 	/**
 	 * Returns the number of employees.
 	 *

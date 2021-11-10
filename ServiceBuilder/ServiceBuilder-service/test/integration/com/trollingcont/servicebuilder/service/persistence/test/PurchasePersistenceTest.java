@@ -164,6 +164,13 @@ public class PurchasePersistenceTest {
 	}
 
 	@Test
+	public void testCountByEmployee() throws Exception {
+		_persistence.countByEmployee(RandomTestUtil.nextLong());
+
+		_persistence.countByEmployee(0L);
+	}
+
+	@Test
 	public void testFindByPrimaryKeyExisting() throws Exception {
 		Purchase newPurchase = addPurchase();
 

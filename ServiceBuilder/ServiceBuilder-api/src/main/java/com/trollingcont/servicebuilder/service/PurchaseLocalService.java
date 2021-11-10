@@ -243,6 +243,9 @@ public interface PurchaseLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Purchase> getPurchases(int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Purchase> getPurchasesByEmployee(long employeeId);
+
 	/**
 	 * Returns the number of purchases.
 	 *

@@ -244,6 +244,10 @@ public class EmployeeLocalServiceUtil {
 		return getService().getEmployees(start, end);
 	}
 
+	public static List<Employee> getEmployeesByPostId(long postId) {
+		return getService().getEmployeesByPostId(postId);
+	}
+
 	/**
 	 * Returns the number of employees.
 	 *

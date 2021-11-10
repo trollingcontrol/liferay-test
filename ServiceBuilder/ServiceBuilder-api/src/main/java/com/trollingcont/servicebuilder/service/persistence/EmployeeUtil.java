@@ -289,6 +289,177 @@ public class EmployeeUtil {
 	}
 
 	/**
+	 * Returns all the employees where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @return the matching employees
+	 */
+	public static List<Employee> findByPostEmployees(long postId) {
+		return getPersistence().findByPostEmployees(postId);
+	}
+
+	/**
+	 * Returns a range of all the employees where postId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param postId the post ID
+	 * @param start the lower bound of the range of employees
+	 * @param end the upper bound of the range of employees (not inclusive)
+	 * @return the range of matching employees
+	 */
+	public static List<Employee> findByPostEmployees(
+		long postId, int start, int end) {
+
+		return getPersistence().findByPostEmployees(postId, start, end);
+	}
+
+	/**
+	 * Returns an ordered range of all the employees where postId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param postId the post ID
+	 * @param start the lower bound of the range of employees
+	 * @param end the upper bound of the range of employees (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching employees
+	 */
+	public static List<Employee> findByPostEmployees(
+		long postId, int start, int end,
+		OrderByComparator<Employee> orderByComparator) {
+
+		return getPersistence().findByPostEmployees(
+			postId, start, end, orderByComparator);
+	}
+
+	/**
+	 * Returns an ordered range of all the employees where postId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param postId the post ID
+	 * @param start the lower bound of the range of employees
+	 * @param end the upper bound of the range of employees (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching employees
+	 */
+	public static List<Employee> findByPostEmployees(
+		long postId, int start, int end,
+		OrderByComparator<Employee> orderByComparator, boolean useFinderCache) {
+
+		return getPersistence().findByPostEmployees(
+			postId, start, end, orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns the first employee in the ordered set where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching employee
+	 * @throws NoSuchEmployeeException if a matching employee could not be found
+	 */
+	public static Employee findByPostEmployees_First(
+			long postId, OrderByComparator<Employee> orderByComparator)
+		throws com.trollingcont.servicebuilder.exception.
+			NoSuchEmployeeException {
+
+		return getPersistence().findByPostEmployees_First(
+			postId, orderByComparator);
+	}
+
+	/**
+	 * Returns the first employee in the ordered set where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching employee, or <code>null</code> if a matching employee could not be found
+	 */
+	public static Employee fetchByPostEmployees_First(
+		long postId, OrderByComparator<Employee> orderByComparator) {
+
+		return getPersistence().fetchByPostEmployees_First(
+			postId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last employee in the ordered set where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching employee
+	 * @throws NoSuchEmployeeException if a matching employee could not be found
+	 */
+	public static Employee findByPostEmployees_Last(
+			long postId, OrderByComparator<Employee> orderByComparator)
+		throws com.trollingcont.servicebuilder.exception.
+			NoSuchEmployeeException {
+
+		return getPersistence().findByPostEmployees_Last(
+			postId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last employee in the ordered set where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching employee, or <code>null</code> if a matching employee could not be found
+	 */
+	public static Employee fetchByPostEmployees_Last(
+		long postId, OrderByComparator<Employee> orderByComparator) {
+
+		return getPersistence().fetchByPostEmployees_Last(
+			postId, orderByComparator);
+	}
+
+	/**
+	 * Returns the employees before and after the current employee in the ordered set where postId = &#63;.
+	 *
+	 * @param employeeId the primary key of the current employee
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next employee
+	 * @throws NoSuchEmployeeException if a employee with the primary key could not be found
+	 */
+	public static Employee[] findByPostEmployees_PrevAndNext(
+			long employeeId, long postId,
+			OrderByComparator<Employee> orderByComparator)
+		throws com.trollingcont.servicebuilder.exception.
+			NoSuchEmployeeException {
+
+		return getPersistence().findByPostEmployees_PrevAndNext(
+			employeeId, postId, orderByComparator);
+	}
+
+	/**
+	 * Removes all the employees where postId = &#63; from the database.
+	 *
+	 * @param postId the post ID
+	 */
+	public static void removeByPostEmployees(long postId) {
+		getPersistence().removeByPostEmployees(postId);
+	}
+
+	/**
+	 * Returns the number of employees where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @return the number of matching employees
+	 */
+	public static int countByPostEmployees(long postId) {
+		return getPersistence().countByPostEmployees(postId);
+	}
+
+	/**
 	 * Caches the employee in the entity cache if it is enabled.
 	 *
 	 * @param employee the employee

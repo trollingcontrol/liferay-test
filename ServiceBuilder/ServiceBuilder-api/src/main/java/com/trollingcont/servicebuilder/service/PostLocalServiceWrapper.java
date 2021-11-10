@@ -226,6 +226,13 @@ public class PostLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.trollingcont.servicebuilder.model.Post>
+		getAllPosts() {
+
+		return _postLocalService.getAllPosts();
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 		getIndexableActionableDynamicQuery() {
 

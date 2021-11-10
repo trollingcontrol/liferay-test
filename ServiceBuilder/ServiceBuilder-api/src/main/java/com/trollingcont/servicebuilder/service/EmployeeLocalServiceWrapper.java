@@ -269,6 +269,13 @@ public class EmployeeLocalServiceWrapper
 		return _employeeLocalService.getEmployees(start, end);
 	}
 
+	@Override
+	public java.util.List<com.trollingcont.servicebuilder.model.Employee>
+		getEmployeesByPostId(long postId) {
+
+		return _employeeLocalService.getEmployeesByPostId(postId);
+	}
+
 	/**
 	 * Returns the number of employees.
 	 *

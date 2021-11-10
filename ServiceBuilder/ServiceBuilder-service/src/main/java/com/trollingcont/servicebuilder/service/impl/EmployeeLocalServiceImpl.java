@@ -25,6 +25,7 @@ import com.trollingcont.servicebuilder.service.base.EmployeeLocalServiceBaseImpl
 import org.osgi.service.component.annotations.Component;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the employee local service.
@@ -97,6 +98,11 @@ public class EmployeeLocalServiceImpl extends EmployeeLocalServiceBaseImpl {
 		employeePersistence.update(employee);
 
 		return employee;
+	}
+
+	public List<Employee> getEmployeesByPostId(long postId) {
+
+		return employeePersistence.findByPostEmployees(postId);
 	}
 
 	protected void validate(

@@ -213,6 +213,10 @@ public class PostLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static List<Post> getAllPosts() {
+		return getService().getAllPosts();
+	}
+
 	public static
 		com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 			getIndexableActionableDynamicQuery() {

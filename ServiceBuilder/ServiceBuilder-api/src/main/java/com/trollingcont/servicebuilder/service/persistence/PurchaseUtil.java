@@ -289,6 +289,177 @@ public class PurchaseUtil {
 	}
 
 	/**
+	 * Returns all the purchases where employeeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @return the matching purchases
+	 */
+	public static List<Purchase> findByEmployee(long employeeId) {
+		return getPersistence().findByEmployee(employeeId);
+	}
+
+	/**
+	 * Returns a range of all the purchases where employeeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PurchaseModelImpl</code>.
+	 * </p>
+	 *
+	 * @param employeeId the employee ID
+	 * @param start the lower bound of the range of purchases
+	 * @param end the upper bound of the range of purchases (not inclusive)
+	 * @return the range of matching purchases
+	 */
+	public static List<Purchase> findByEmployee(
+		long employeeId, int start, int end) {
+
+		return getPersistence().findByEmployee(employeeId, start, end);
+	}
+
+	/**
+	 * Returns an ordered range of all the purchases where employeeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PurchaseModelImpl</code>.
+	 * </p>
+	 *
+	 * @param employeeId the employee ID
+	 * @param start the lower bound of the range of purchases
+	 * @param end the upper bound of the range of purchases (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching purchases
+	 */
+	public static List<Purchase> findByEmployee(
+		long employeeId, int start, int end,
+		OrderByComparator<Purchase> orderByComparator) {
+
+		return getPersistence().findByEmployee(
+			employeeId, start, end, orderByComparator);
+	}
+
+	/**
+	 * Returns an ordered range of all the purchases where employeeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PurchaseModelImpl</code>.
+	 * </p>
+	 *
+	 * @param employeeId the employee ID
+	 * @param start the lower bound of the range of purchases
+	 * @param end the upper bound of the range of purchases (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching purchases
+	 */
+	public static List<Purchase> findByEmployee(
+		long employeeId, int start, int end,
+		OrderByComparator<Purchase> orderByComparator, boolean useFinderCache) {
+
+		return getPersistence().findByEmployee(
+			employeeId, start, end, orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns the first purchase in the ordered set where employeeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching purchase
+	 * @throws NoSuchPurchaseException if a matching purchase could not be found
+	 */
+	public static Purchase findByEmployee_First(
+			long employeeId, OrderByComparator<Purchase> orderByComparator)
+		throws com.trollingcont.servicebuilder.exception.
+			NoSuchPurchaseException {
+
+		return getPersistence().findByEmployee_First(
+			employeeId, orderByComparator);
+	}
+
+	/**
+	 * Returns the first purchase in the ordered set where employeeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching purchase, or <code>null</code> if a matching purchase could not be found
+	 */
+	public static Purchase fetchByEmployee_First(
+		long employeeId, OrderByComparator<Purchase> orderByComparator) {
+
+		return getPersistence().fetchByEmployee_First(
+			employeeId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last purchase in the ordered set where employeeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching purchase
+	 * @throws NoSuchPurchaseException if a matching purchase could not be found
+	 */
+	public static Purchase findByEmployee_Last(
+			long employeeId, OrderByComparator<Purchase> orderByComparator)
+		throws com.trollingcont.servicebuilder.exception.
+			NoSuchPurchaseException {
+
+		return getPersistence().findByEmployee_Last(
+			employeeId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last purchase in the ordered set where employeeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching purchase, or <code>null</code> if a matching purchase could not be found
+	 */
+	public static Purchase fetchByEmployee_Last(
+		long employeeId, OrderByComparator<Purchase> orderByComparator) {
+
+		return getPersistence().fetchByEmployee_Last(
+			employeeId, orderByComparator);
+	}
+
+	/**
+	 * Returns the purchases before and after the current purchase in the ordered set where employeeId = &#63;.
+	 *
+	 * @param purchaseId the primary key of the current purchase
+	 * @param employeeId the employee ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next purchase
+	 * @throws NoSuchPurchaseException if a purchase with the primary key could not be found
+	 */
+	public static Purchase[] findByEmployee_PrevAndNext(
+			long purchaseId, long employeeId,
+			OrderByComparator<Purchase> orderByComparator)
+		throws com.trollingcont.servicebuilder.exception.
+			NoSuchPurchaseException {
+
+		return getPersistence().findByEmployee_PrevAndNext(
+			purchaseId, employeeId, orderByComparator);
+	}
+
+	/**
+	 * Removes all the purchases where employeeId = &#63; from the database.
+	 *
+	 * @param employeeId the employee ID
+	 */
+	public static void removeByEmployee(long employeeId) {
+		getPersistence().removeByEmployee(employeeId);
+	}
+
+	/**
+	 * Returns the number of purchases where employeeId = &#63;.
+	 *
+	 * @param employeeId the employee ID
+	 * @return the number of matching purchases
+	 */
+	public static int countByEmployee(long employeeId) {
+		return getPersistence().countByEmployee(employeeId);
+	}
+
+	/**
 	 * Caches the purchase in the entity cache if it is enabled.
 	 *
 	 * @param purchase the purchase

@@ -24,6 +24,7 @@ import com.trollingcont.servicebuilder.service.base.PurchaseLocalServiceBaseImpl
 import org.osgi.service.component.annotations.Component;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the purchase local service.
@@ -72,5 +73,10 @@ public class PurchaseLocalServiceImpl extends PurchaseLocalServiceBaseImpl {
 		purchasePersistence.update(purchase);
 
 		return purchase;
+	}
+
+	public List<Purchase> getPurchasesByEmployee(long employeeId) {
+
+		return purchasePersistence.findByEmployee(employeeId);
 	}
 }

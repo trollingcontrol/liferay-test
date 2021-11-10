@@ -184,6 +184,149 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	public int countByUuid(String uuid);
 
 	/**
+	 * Returns all the employees where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @return the matching employees
+	 */
+	public java.util.List<Employee> findByPostEmployees(long postId);
+
+	/**
+	 * Returns a range of all the employees where postId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param postId the post ID
+	 * @param start the lower bound of the range of employees
+	 * @param end the upper bound of the range of employees (not inclusive)
+	 * @return the range of matching employees
+	 */
+	public java.util.List<Employee> findByPostEmployees(
+		long postId, int start, int end);
+
+	/**
+	 * Returns an ordered range of all the employees where postId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param postId the post ID
+	 * @param start the lower bound of the range of employees
+	 * @param end the upper bound of the range of employees (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching employees
+	 */
+	public java.util.List<Employee> findByPostEmployees(
+		long postId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Employee>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the employees where postId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>EmployeeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param postId the post ID
+	 * @param start the lower bound of the range of employees
+	 * @param end the upper bound of the range of employees (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching employees
+	 */
+	public java.util.List<Employee> findByPostEmployees(
+		long postId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Employee>
+			orderByComparator,
+		boolean useFinderCache);
+
+	/**
+	 * Returns the first employee in the ordered set where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching employee
+	 * @throws NoSuchEmployeeException if a matching employee could not be found
+	 */
+	public Employee findByPostEmployees_First(
+			long postId,
+			com.liferay.portal.kernel.util.OrderByComparator<Employee>
+				orderByComparator)
+		throws NoSuchEmployeeException;
+
+	/**
+	 * Returns the first employee in the ordered set where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching employee, or <code>null</code> if a matching employee could not be found
+	 */
+	public Employee fetchByPostEmployees_First(
+		long postId,
+		com.liferay.portal.kernel.util.OrderByComparator<Employee>
+			orderByComparator);
+
+	/**
+	 * Returns the last employee in the ordered set where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching employee
+	 * @throws NoSuchEmployeeException if a matching employee could not be found
+	 */
+	public Employee findByPostEmployees_Last(
+			long postId,
+			com.liferay.portal.kernel.util.OrderByComparator<Employee>
+				orderByComparator)
+		throws NoSuchEmployeeException;
+
+	/**
+	 * Returns the last employee in the ordered set where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching employee, or <code>null</code> if a matching employee could not be found
+	 */
+	public Employee fetchByPostEmployees_Last(
+		long postId,
+		com.liferay.portal.kernel.util.OrderByComparator<Employee>
+			orderByComparator);
+
+	/**
+	 * Returns the employees before and after the current employee in the ordered set where postId = &#63;.
+	 *
+	 * @param employeeId the primary key of the current employee
+	 * @param postId the post ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next employee
+	 * @throws NoSuchEmployeeException if a employee with the primary key could not be found
+	 */
+	public Employee[] findByPostEmployees_PrevAndNext(
+			long employeeId, long postId,
+			com.liferay.portal.kernel.util.OrderByComparator<Employee>
+				orderByComparator)
+		throws NoSuchEmployeeException;
+
+	/**
+	 * Removes all the employees where postId = &#63; from the database.
+	 *
+	 * @param postId the post ID
+	 */
+	public void removeByPostEmployees(long postId);
+
+	/**
+	 * Returns the number of employees where postId = &#63;.
+	 *
+	 * @param postId the post ID
+	 * @return the number of matching employees
+	 */
+	public int countByPostEmployees(long postId);
+
+	/**
 	 * Caches the employee in the entity cache if it is enabled.
 	 *
 	 * @param employee the employee

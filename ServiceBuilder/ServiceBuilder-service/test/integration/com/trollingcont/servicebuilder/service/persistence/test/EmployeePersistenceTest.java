@@ -170,6 +170,13 @@ public class EmployeePersistenceTest {
 	}
 
 	@Test
+	public void testCountByPostEmployees() throws Exception {
+		_persistence.countByPostEmployees(RandomTestUtil.nextLong());
+
+		_persistence.countByPostEmployees(0L);
+	}
+
+	@Test
 	public void testFindByPrimaryKeyExisting() throws Exception {
 		Employee newEmployee = addEmployee();
 

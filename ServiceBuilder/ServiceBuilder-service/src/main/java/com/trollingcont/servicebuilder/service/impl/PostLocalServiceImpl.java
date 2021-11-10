@@ -24,6 +24,8 @@ import com.trollingcont.servicebuilder.service.base.PostLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
 
+import java.util.List;
+
 /**
  * The implementation of the post local service.
  *
@@ -83,6 +85,11 @@ public class PostLocalServiceImpl extends PostLocalServiceBaseImpl {
 		postPersistence.update(post);
 
 		return post;
+	}
+
+	public List<Post> getAllPosts() {
+
+		return postPersistence.findAll();
 	}
 
 	protected void validate(String name) throws PostException {

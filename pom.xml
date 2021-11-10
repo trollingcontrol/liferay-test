@@ -17,6 +17,7 @@
     <module>PurchaseTypesPortlet</module>
     <module>PurchasesPortlet</module>
     <module>ImportZipPortlet</module>
+    <module>BestEmployees</module>
   </modules>
   <properties>
     <liferay.repository.url>https://repository-cdn.liferay.com/nexus/content/groups/public/</liferay.repository.url>
