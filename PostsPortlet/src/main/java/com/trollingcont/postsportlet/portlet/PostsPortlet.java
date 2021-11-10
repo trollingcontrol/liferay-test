@@ -59,7 +59,7 @@ public class PostsPortlet extends MVCPortlet {
 		boolean isSuccessful = false;
 
 		try {
-			_postLocalService.addPost(name, serviceContext);
+			PostLocalServiceUtil.addPost(name, serviceContext);
 
 			SessionMessages.add(request, "postAdded");
 
@@ -105,11 +105,11 @@ public class PostsPortlet extends MVCPortlet {
 		boolean isSuccessful = false;
 
 		try {
-			Post post = _postLocalService.getPost(Long.parseUnsignedLong(id));
+			Post post = PostLocalServiceUtil.getPost(Long.parseUnsignedLong(id));
 
 			post.setName(name);
 
-			_postLocalService.updatePost(post, serviceContext);
+			PostLocalServiceUtil.updatePost(post, serviceContext);
 
 			SessionMessages.add(request, "postUpdated");
 
@@ -155,7 +155,7 @@ public class PostsPortlet extends MVCPortlet {
 		String postId = ParamUtil.getString(request, "postIdToBeDeleted");
 
 		try {
-			_postLocalService.deletePost(Long.parseUnsignedLong(postId));
+			PostLocalServiceUtil.deletePost(Long.parseUnsignedLong(postId));
 
 			SessionMessages.add(request, "postDeleted");
 		}
@@ -169,11 +169,4 @@ public class PostsPortlet extends MVCPortlet {
 			SessionErrors.add(request, "errorDeletingPost");
 		}
 	}
-
-	@Reference(unbind = "-")
-	protected void setPostLocalService(PostLocalService postLocalService) {
-		_postLocalService = postLocalService;
-	}
-
-	private PostLocalService _postLocalService;
 }
