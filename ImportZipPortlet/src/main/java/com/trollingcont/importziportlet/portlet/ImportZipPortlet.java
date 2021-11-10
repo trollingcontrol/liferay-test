@@ -127,15 +127,7 @@ public class ImportZipPortlet extends MVCPortlet {
 								)
 						);
 					}
-					catch (Exception e) {
-						System.out.printf(
-								"An error occurred while processing entry '%s', skipping\n",
-								descriptor.getZipEntryName()
-						);
-					}
-				}
-				else {
-					System.out.printf("Entry '%s' not found, skipping\n", descriptor.getZipEntryName());
+					catch (Exception ignored) {}
 				}
 			}
 			catch (IllegalStateException ise) {
@@ -191,7 +183,6 @@ public class ImportZipPortlet extends MVCPortlet {
 			}
 			catch (Exception e) {
 				skippedEntries++;
-				System.out.println("Failed to add Post entry, skipping this entry");
 			}
 		}
 
@@ -246,7 +237,6 @@ public class ImportZipPortlet extends MVCPortlet {
 			}
 			catch (Exception e) {
 				skippedEntries++;
-				System.out.println("Failed to add Employee entry, skipping this entry");
 			}
 		}
 
@@ -298,7 +288,6 @@ public class ImportZipPortlet extends MVCPortlet {
 			}
 			catch (Exception e) {
 				skippedEntries++;
-				System.out.println("Failed to add Product entry, skipping");
 			}
 		}
 
@@ -337,7 +326,6 @@ public class ImportZipPortlet extends MVCPortlet {
 			}
 			catch (Exception e) {
 				skippedEntries++;
-				System.out.println("Failed to add Product Type entry, skipping this entry");
 			}
 		}
 
@@ -383,7 +371,6 @@ public class ImportZipPortlet extends MVCPortlet {
 			}
 			catch (Exception e) {
 				skippedEntries++;
-				System.out.println("Failed to add Purchase entry, skipping this entry");
 			}
 		}
 
@@ -423,7 +410,6 @@ public class ImportZipPortlet extends MVCPortlet {
 			}
 			catch (Exception e) {
 				skippedEntries++;
-				System.out.println("Failed to add Purchase Type entry, skipping this entry");
 			}
 		}
 

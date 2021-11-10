@@ -47,4 +47,6 @@ public class PurchaseServiceImpl extends PurchaseServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use <code>com.trollingcont.servicebuilder.service.PurchaseServiceUtil</code> to access the purchase remote service.
 	 */
+
+
 }

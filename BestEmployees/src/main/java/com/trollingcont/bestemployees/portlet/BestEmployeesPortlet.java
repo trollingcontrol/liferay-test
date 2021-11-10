@@ -21,9 +21,7 @@ import com.trollingcont.servicebuilder.service.PurchaseLocalServiceUtil;
 import org.osgi.service.component.annotations.Component;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -47,6 +45,9 @@ import java.util.stream.Collectors;
 public class BestEmployeesPortlet extends MVCPortlet {
 
 	static final int BEST_EMPLOYEES_NUMBER = 3;
+	static final int LAST_DAYS_TO_COUNT = 30;
+
+	private Date minimumDate;
 
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
@@ -54,6 +55,12 @@ public class BestEmployeesPortlet extends MVCPortlet {
 
 		HashMap<Post, List<BestEmployeeEntry>> bestEmployeesMap = new HashMap<>();
 
+		Date date = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_YEAR, -LAST_DAYS_TO_COUNT);
+		minimumDate = calendar.getTime();
+		
 		for (Post post : PostLocalServiceUtil.getAllPosts()) {
 			bestEmployeesMap.put(post, getBestEmployeesByPost(post.getPostId()));
 		}
@@ -86,19 +93,21 @@ public class BestEmployeesPortlet extends MVCPortlet {
 
 	private int compareBestEmployeeEntry(BestEmployeeEntry e1, BestEmployeeEntry e2) {
 		if (e2.getCost() > e1.getCost()) {
-			return -1;
+			return 1;
 		}
 		else if (e2.getCost() < e1.getCost()) {
-			return 1;
+			return -1;
 		}
 		return 0;
 	}
 
 	private long getTotalEmployeePurchasesCost(long employeeId) {
 
-		System.out.printf("Calc summary cost for employee ID %d\n", employeeId);
-
-		List<Purchase> purchases = PurchaseLocalServiceUtil.getPurchasesByEmployee(employeeId);
+		List<Purchase> purchases =
+				PurchaseLocalServiceUtil.getPurchasesByEmployee(employeeId)
+						.stream()
+						.filter(this::isPurchaseLastDays)
+						.collect(Collectors.toList());
 
 		long summaryCost = 0;
 
@@ -112,5 +121,10 @@ public class BestEmployeesPortlet extends MVCPortlet {
 		}
 
 		return summaryCost;
+	}
+
+
+	private boolean isPurchaseLastDays(Purchase purchase) {
+		return purchase.getDatePurchased().after(minimumDate);
 	}
 }

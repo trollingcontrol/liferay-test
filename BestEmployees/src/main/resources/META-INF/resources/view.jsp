@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
+<%@ page errorPage="error.jsp" %>
 <%@ include file="init.jsp" %>
 
 <%
@@ -11,7 +12,11 @@
 
 %>
 
-<c:set var="employeesMap" value="<%= bestEmployeesMap.entrySet() %>" />
+<p>Best employees grouped by posts by summary cost of its purchases for last 30 days.</p>
+
+<% if (bestEmployeesMap.size() == 0) { %>
+<p>Nothing to show. There are no posts in system base.</p>
+<% } %>
 
 <div>
 	<ul>
@@ -19,6 +24,9 @@
 		<li>
 			<p>Post: <%= entry.getKey().getName() %></p>
 			<ul>
+				<% if (entry.getValue().size() == 0) { %>
+				<p>Nothing to show. There are no employees taking this post.</p>
+				<% } %>
 				<% for (BestEmployeeEntry employeeEntry : entry.getValue()) { %>
 				<li><%= String.format(
 						"%s %s %s - %.2f RUB",
