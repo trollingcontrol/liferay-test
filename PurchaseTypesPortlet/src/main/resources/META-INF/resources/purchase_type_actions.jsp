@@ -1,6 +1,3 @@
-<%@ page import="com.trollingcont.servicebuilder.model.PurchaseType" %>
-<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
-<%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ include file="init.jsp" %>
 
 <%

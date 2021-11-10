@@ -1,4 +1,3 @@
-<%@ page import="com.trollingcont.servicebuilder.service.PurchaseTypeLocalServiceUtil" %>
 <%@ include file="init.jsp" %>
 
 <portlet:renderURL var="addPurchaseTypeURL">
